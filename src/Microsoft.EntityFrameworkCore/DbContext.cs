@@ -197,37 +197,37 @@ namespace Microsoft.EntityFrameworkCore
 
         /// <summary>
         ///     <para>
-        ///         Override this method to configure the database (and other options) to be used for this context.
-        ///         This method is called for each instance of the context that is created.
+        ///         重写这个方法来配置被当前上下文使用的数据库（及其它选项）。
+        ///         这个方法在上下文实例每次被创建时调用。
         ///     </para>
         ///     <para>
-        ///         In situations where an instance of <see cref="DbContextOptions" /> may or may not have been passed
-        ///         to the constructor, you can use <see cref="DbContextOptionsBuilder.IsConfigured" /> to determine if
-        ///         the options have already been set, and skip some or all of the logic in
-        ///         <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" />.
+        ///         在具体的情景下， <see cref="DbContextOptions" /> 的实例可能会或可能不会被传递给构建函数，
+        ///         你可以使用 <see cref="DbContextOptionsBuilder.IsConfigured" /> 来确定选项是否已被设置，
+        ///         以及忽略一些或所有在 <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> 中的逻辑。
+        ///         
         ///     </para>
         /// </summary>
         /// <param name="optionsBuilder">
-        ///     A builder used to create or modify options for this context. Databases (and other extensions)
-        ///     typically define extension methods on this object that allow you to configure the context.
+        ///     用来创建或修改当前上下文选项的构建器。
+        ///     数据库（及其它护展）通常在这个对象上定义了扩展方法，允许你去配置上下文。
         /// </param>
         protected internal virtual void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
 
         /// <summary>
-        ///     Override this method to further configure the model that was discovered by convention from the entity types
-        ///     exposed in <see cref="DbSet{TEntity}" /> properties on your derived context. The resulting model may be cached
-        ///     and re-used for subsequent instances of your derived context.
+        ///     重载这个方法来深层次的配置模型，这些模型依照惯例是被从你派生的上下文中公开的 
+        ///     <see cref="DbSet{TEntity}" /> 类型属性发现的。
+        ///     由此产生的模型可能会被缓存，并可以被后序你派生的上下文实例重用。
         /// </summary>
         /// <remarks>
-        ///     If a model is explicitly set on the options for this context (via <see cref="DbContextOptionsBuilder.UseModel(IModel)" />)
-        ///     then this method will not be run.
+        ///     如果模型是在你的上下文中明确设置的（通过 <see cref="DbContextOptionsBuilder.UseModel(IModel)" />），
+        ///     那么这个方法将不会运行。
         /// </remarks>
         /// <param name="modelBuilder">
-        ///     The builder being used to construct the model for this context. Databases (and other extensions) typically
-        ///     define extension methods on this object that allow you to configure aspects of the model that are specific
-        ///     to a given database.
+        ///     为当前上下文构建模型的生成器。
+        ///     数据库（以及其它扩展）通常在这个对象上定义了扩展方法，
+        ///     允许你为模型配置特定于给定数据库的方面。
         /// </param>
         protected internal virtual void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -1010,15 +1010,15 @@ namespace Microsoft.EntityFrameworkCore
                 ?? (_entityFinderSource = InternalServiceProvider.GetRequiredService<IEntityFinderSource>())).Create(this, entityType);
 
         /// <summary>
-        ///     Finds an entity with the given primary key values. If an entity with the given primary key values
-        ///     is being tracked by the context, then it is returned immediately without making a request to the
-        ///     database. Otherwise, a query is made to the database for an entity with the given primary key values
-        ///     and this entity, if found, is attached to the context and returned. If no entity is found, then
-        ///     null is returned.
+        ///     使用给定的主键值查找一个实体。 
+        ///     如果正在这被上下文跟踪的实体带有给定主键值，那么它将直接返回而不需要请求数据库。
+        ///     否则，使用给定的主键值以及实体去查询数据库，
+        ///     如果找到，它附加实体到上下文并返回。
+        ///     如果没有找到那么返回空引用(<c>null</c>)。
         /// </summary>
-        /// <param name="entityType"> The type of entity to find. </param>
-        /// <param name="keyValues">The values of the primary key for the entity to be found.</param>
-        /// <returns>The entity found, or null.</returns>
+        /// <param name="entityType"> 查找的实体类型。 </param>
+        /// <param name="keyValues">将要查找的实体的主键值。</param>
+        /// <returns>查找到的实体，或空引用（<c>null</c>）。</returns>
         public virtual object Find([NotNull] Type entityType, [NotNull] params object[] keyValues)
             => Finder(entityType).Find(keyValues);
 
