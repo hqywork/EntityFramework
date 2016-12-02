@@ -98,13 +98,13 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Builders
         InternalRelationshipBuilder IInfrastructure<InternalRelationshipBuilder>.Instance => Builder;
 
         /// <summary>
-        ///     Configures this as a one-to-many relationship.
+        ///     配置一对多关系。
         /// </summary>
         /// <param name="navigationName">
-        ///     The name of the reference navigation property on the other end of this relationship.
-        ///     If null, there is no navigation property on the other end of the relationship.
+        ///     在关系的另一端引用导航属性的名称。
+        ///     如果为空引用（<c>null</c>），则表示在关系的另一端没有导航属性。
         /// </param>
-        /// <returns> An object to further configure the relationship. </returns>
+        /// <returns> 可用来深层次配置关系的对象。 </returns>
         public virtual ReferenceCollectionBuilder WithOne([CanBeNull] string navigationName = null)
             => new ReferenceCollectionBuilder(
                 DeclaringEntityType,

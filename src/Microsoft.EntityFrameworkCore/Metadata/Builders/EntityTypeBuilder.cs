@@ -194,24 +194,24 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Builders
 
         /// <summary>
         ///     <para>
-        ///         Configures a relationship where this entity type has a reference that points
-        ///         to a single instance of the other type in the relationship.
+        ///         配置一种关系，在这个实体中拥有一个指向关系中其它类型单实例的引用。
+        ///         
         ///     </para>
         ///     <para>
-        ///         After calling this method, you should chain a call to
-        ///         <see cref="ReferenceNavigationBuilder.WithMany" />
-        ///         or <see cref="ReferenceNavigationBuilder.WithOne" /> to fully configure
-        ///         the relationship. Calling just this method without the chained call will not
-        ///         produce a valid relationship.
+        ///         在调用这个方法后，你应该以链式方式调用
+        ///         <see cref="ReferenceNavigationBuilder.WithMany" /> 或
+        ///         <see cref="CollectionNavigationBuilder.WithOne" />
+        ///         来充分的配置这个关系。
+        ///         如果没有以链式方法调用这个方法，这个关系将不会生效。
         ///     </para>
         /// </summary>
-        /// <param name="relatedType"> The entity type that this relationship targets. </param>
+        /// <param name="relatedType"> 当前关系目标实体类型。 </param>
         /// <param name="navigationName">
-        ///     The name of the reference navigation property on this entity type that represents the relationship. If
-        ///     no property is specified, the relationship will be configured without a navigation property on this
-        ///     end.
+        ///     代表这个关系的实体类型上引用导航属性的名称。
+        ///     如果没有指定属性，关系将在没有导航属性的情况下被配置。
+        ///     
         /// </param>
-        /// <returns> An object that can be used to configure the relationship. </returns>
+        /// <returns> 可用于配置关系的对象。 </returns>
         public virtual ReferenceNavigationBuilder HasOne(
             [NotNull] Type relatedType,
             [CanBeNull] string navigationName = null)
@@ -230,24 +230,24 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Builders
 
         /// <summary>
         ///     <para>
-        ///         Configures a relationship where this entity type has a reference that points
-        ///         to a single instance of the other type in the relationship.
+        ///         配置一种关系，在这个实体中拥有一个指向关系中其它类型单实例的引用。
+        ///         
         ///     </para>
         ///     <para>
-        ///         After calling this method, you should chain a call to
-        ///         <see cref="ReferenceNavigationBuilder.WithMany" />
-        ///         or <see cref="ReferenceNavigationBuilder.WithOne" /> to fully configure
-        ///         the relationship. Calling just this method without the chained call will not
-        ///         produce a valid relationship.
+        ///         在调用这个方法后，你应该以链式方式调用
+        ///         <see cref="ReferenceNavigationBuilder.WithMany" /> 或
+        ///         <see cref="CollectionNavigationBuilder.WithOne" />
+        ///         来充分的配置这个关系。
+        ///         如果没有以链式方法调用这个方法，这个关系将不会生效。
         ///     </para>
         /// </summary>
-        /// <param name="relatedTypeName"> The name of the entity type that this relationship targets. </param>
+        /// <param name="relatedTypeName"> 当前关系目标实体类型的名称。 </param>
         /// <param name="navigationName">
-        ///     The name of the reference navigation property on this entity type that represents the relationship. If
-        ///     no property is specified, the relationship will be configured without a navigation property on this
-        ///     end.
+        ///     代表这个关系的实体类型上引用导航属性的名称。
+        ///     如果没有指定属性，关系将在没有导航属性的情况下被配置。
+        ///     
         /// </param>
-        /// <returns> An object that can be used to configure the relationship. </returns>
+        /// <returns> 可用于配置关系的对象。 </returns>
         public virtual ReferenceNavigationBuilder HasOne(
             [NotNull] string relatedTypeName,
             [CanBeNull] string navigationName = null)
@@ -266,23 +266,23 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Builders
 
         /// <summary>
         ///     <para>
-        ///         Configures a relationship where this entity type has a collection that contains
-        ///         instances of the other type in the relationship.
+        ///         配置一种关系，在这个实体类型中拥有一个包含了关系中其它类型实例的集合。
+        ///         
         ///     </para>
         ///     <para>
-        ///         After calling this method, you should chain a call to
+        ///         在调用这个方法后，你应该以链式方式调用
         ///         <see cref="CollectionNavigationBuilder.WithOne" />
-        ///         to fully configure the relationship. Calling just this method without the chained call will not
-        ///         produce a valid relationship.
+        ///         来充分的配置这个关系。
+        ///         如果没有以链式方法调用这个方法，这个关系将不会生效。
         ///     </para>
         /// </summary>
-        /// <param name="relatedType"> The entity type that this relationship targets. </param>
+        /// <param name="relatedType"> 当前关系目标实体类型。 </param>
         /// <param name="navigationName">
-        ///     The name of the collection navigation property on this entity type that represents the relationship. If
-        ///     no property is specified, the relationship will be configured without a navigation property on this
-        ///     end.
+        ///     代表这个关系的实体类型上导航属性集合的名称。
+        ///     如果没有指定属性，关系将在没有导航属性的情况下被配置。
+        ///     
         /// </param>
-        /// <returns> An object that can be used to configure the relationship. </returns>
+        /// <returns> 可用于配置关系的对象。 </returns>
         public virtual CollectionNavigationBuilder HasMany(
             [NotNull] Type relatedType,
             [CanBeNull] string navigationName = null)
@@ -301,23 +301,23 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Builders
 
         /// <summary>
         ///     <para>
-        ///         Configures a relationship where this entity type has a collection that contains
-        ///         instances of the other type in the relationship.
+        ///         配置一种关系，在这个实体类型中拥有一个包含了关系中其它类型实例的集合。
+        ///         
         ///     </para>
         ///     <para>
-        ///         After calling this method, you should chain a call to
+        ///         在调用这个方法后，你应该以链式方式调用
         ///         <see cref="CollectionNavigationBuilder.WithOne" />
-        ///         to fully configure the relationship. Calling just this method without the chained call will not
-        ///         produce a valid relationship.
+        ///         来充分的配置这个关系。
+        ///         如果没有以链式方法调用这个方法，这个关系将不会生效。
         ///     </para>
         /// </summary>
-        /// <param name="relatedTypeName"> The name of the entity type that this relationship targets. </param>
+        /// <param name="relatedTypeName"> 当前关系目标实体类型的名称。 </param>
         /// <param name="navigationName">
-        ///     The name of the collection navigation property on this entity type that represents the relationship. If
-        ///     no property is specified, the relationship will be configured without a navigation property on this
-        ///     end.
+        ///     代表这个关系的实体类型上导航属性集合的名称。
+        ///     如果没有指定属性，关系将在没有导航属性的情况下被配置。
+        ///     
         /// </param>
-        /// <returns> An object that can be used to configure the relationship. </returns>
+        /// <returns> 可用于配置关系的对象。 </returns>
         public virtual CollectionNavigationBuilder HasMany(
             [NotNull] string relatedTypeName,
             [CanBeNull] string navigationName = null)
