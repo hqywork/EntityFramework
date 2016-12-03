@@ -9,55 +9,55 @@ namespace Microsoft.EntityFrameworkCore.Metadata
 {
     /// <summary>
     ///     <para>
-    ///         Metadata about the shape of entities, the relationships between them, and how they map to the database. A model is typically
-    ///         created by overriding the <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> method on a derived context, or
-    ///         using <see cref="ModelBuilder" />.
+    ///         描述了实体形状、它们之间的关系以及它们是如何映射到数据库的元数据。A model is typically
+    ///         模型通常是通过在上下文派生类上重载 <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> 方法，
+    ///         或使用 <see cref="ModelBuilder" />。
     ///     </para>
     ///     <para>
-    ///         This interface is used during model creation and allows the metadata to be modified.
-    ///         Once the model is built, <see cref="IModel" /> represents a ready-only view of the same metadata.
+    ///         这个接口在模型创建期间被使用，允许元数据被修改。
+    ///         一旦模型被创建，<see cref="IModel" /> 代表同一元数据的一个只读视图。
     ///     </para>
     /// </summary>
     public interface IMutableModel : IModel, IMutableAnnotatable
     {
         /// <summary>
         ///     <para>
-        ///         Adds a shadow state entity type to the model.
+        ///         添加一个影像状态的实体类型到模型。
         ///     </para>
         ///     <para>
-        ///         Shadow entities are not currently supported in a model that is used at runtime with a <see cref="DbContext" />.
-        ///         Therefore, shadow state entity types will only exist in migration model snapshots, etc.
+        ///         影像实体在 <see cref="DbContext" /> 运行时模型中目前是不被支持的。
+        ///         因此，影像状态实体类型将仅存在于迁移模型快照中。
         ///     </para>
         /// </summary>
-        /// <param name="name"> The name of the entity to be added. </param>
-        /// <returns> The new entity type. </returns>
+        /// <param name="name"> 将添加的实体名称。 </param>
+        /// <returns> 新的实体类型。 </returns>
         IMutableEntityType AddEntityType([NotNull] string name);
 
         /// <summary>
-        ///     Adds an entity type to the model.
+        ///     添加一个实体类型到模型。
         /// </summary>
-        /// <param name="clrType"> The CLR class that is used to represent instances of this entity type. </param>
-        /// <returns> The new entity type. </returns>
+        /// <param name="clrType"> 代表这个实体类型的 CLR 类。 </param>
+        /// <returns> 新的实体类型。 </returns>
         IMutableEntityType AddEntityType([CanBeNull] Type clrType);
 
         /// <summary>
-        ///     Gets the entity with the given name. Returns null if no entity type with the given name is found.
+        ///     获取给定名称的实体。如果未找到则返回空引用（<c>null</c>）。
         /// </summary>
-        /// <param name="name"> The name of the entity type to find. </param>
-        /// <returns> The entity type, or null if none are found. </returns>
+        /// <param name="name"> 查找的实体类型名称。 </param>
+        /// <returns> 实体类型，或空引用（<c>null</c>，未找到时） </returns>
         new IMutableEntityType FindEntityType([NotNull] string name);
 
         /// <summary>
-        ///     Removes an entity type from the model.
+        ///     从模型中移除一个实体类型。
         /// </summary>
-        /// <param name="name"> The name of the entity type to be removed. </param>
+        /// <param name="name"> 将要移除的实体类型名称。 </param>
         /// <returns> The entity type that was removed. </returns>
         IMutableEntityType RemoveEntityType([NotNull] string name);
 
         /// <summary>
-        ///     Gets all entity types defined in the model.
+        ///     获取在模型中定义的所有实体类型。
         /// </summary>
-        /// <returns> All entity types defined in the model. </returns>
+        /// <returns> 在模型中已定义的所有实体类型。 </returns>
         new IEnumerable<IMutableEntityType> GetEntityTypes();
     }
 }

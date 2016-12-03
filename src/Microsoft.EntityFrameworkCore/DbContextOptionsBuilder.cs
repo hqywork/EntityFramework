@@ -32,7 +32,7 @@ namespace Microsoft.EntityFrameworkCore
         private DbContextOptions _options;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="DbContextOptionsBuilder" /> class with no options set.
+        ///     无选项设置初始化 <see cref="DbContextOptionsBuilder" /> 的新实例。
         /// </summary>
         public DbContextOptionsBuilder()
             : this(new DbContextOptions<DbContext>())
@@ -70,11 +70,11 @@ namespace Microsoft.EntityFrameworkCore
         public virtual bool IsConfigured => _options.Extensions.Any();
 
         /// <summary>
-        ///     Sets the model to be used for the context. If the model is set, then <see cref="DbContext.OnModelCreating(ModelBuilder)" />
-        ///     will not be run.
+        ///     设置被上下文使用的模型 If the model is set, then <see cref="DbContext.OnModelCreating(ModelBuilder)" />
+        ///     如果模型被设置，那么 <see cref="DbContext.OnModelCreating(ModelBuilder)" /> 方法将不会运行。
         /// </summary>
-        /// <param name="model"> The model to be used. </param>
-        /// <returns> The same builder instance so that multiple calls can be chained. </returns>
+        /// <param name="model"> 将被使用的模型。 </param>
+        /// <returns> 当前生成器实例，以便进行多个链接调用。 </returns>
         public virtual DbContextOptionsBuilder UseModel([NotNull] IModel model)
             => SetOption(e => e.Model = Check.NotNull(model, nameof(model)));
 
