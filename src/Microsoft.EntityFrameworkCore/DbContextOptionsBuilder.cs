@@ -17,14 +17,14 @@ namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
     ///     <para>
-    ///         Provides a simple API surface for configuring <see cref="DbContextOptions" />. Databases (and other extensions)
-    ///         typically define extension methods on this object that allow you to configure the database connection (and other
-    ///         options) to be used for a context.
+    ///         提供了一个简单 API 来配置 <see cref="DbContextOptions" />. 
+    ///         数据库（以及其它扩展）通常在这个对象上定义扩展方法，
+    ///         允许你配置数据库连接（以及其它选项）以供上下文使用。
     ///     </para>
     ///     <para>
-    ///         You can use <see cref="DbContextOptionsBuilder" /> to configure a context by overriding
-    ///         <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> or creating a <see cref="DbContextOptions" />
-    ///         externally and passing it to the context constructor.
+    ///         你可以通过重载 <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> 
+    ///         或创建一个外部的 <see cref="DbContextOptions" /> 并传递给上下文的构造
+    ///         来配置一个上下文。
     ///     </para>
     /// </summary>
     public class DbContextOptionsBuilder : IDbContextOptionsBuilderInfrastructure

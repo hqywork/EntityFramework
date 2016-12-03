@@ -65,12 +65,12 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Builders
         }
 
         /// <summary>
-        ///     Configures whether this property must have a value assigned or whether null is a valid value.
-        ///     A property can only be configured as non-required if it is based on a CLR type that can be
-        ///     assigned null.
+        ///     配置属性是否可以为空值。
+        ///     如果属性是基于可以指定空值的 CLR 类型，那它仅可以被配置为非必须值。
+        ///     
         /// </summary>
-        /// <param name="required"> A value indicating whether the property is required. </param>
-        /// <returns> The same builder instance so that multiple configuration calls can be chained. </returns>
+        /// <param name="required"> 一个布尔值，指示属性是否为必须的。 </param>
+        /// <returns> 当前生成器实例，以便多个配置可以进行链式调用。 </returns>
         public virtual PropertyBuilder IsRequired(bool required = true)
         {
             Builder.IsRequired(required, ConfigurationSource.Explicit);
@@ -106,15 +106,15 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Builders
 
         /// <summary>
         ///     <para>
-        ///         Configures the property as <see cref="ValueGeneratedOnAddOrUpdate" /> and
-        ///         <see cref="IsConcurrencyToken" />.
+        ///         配置属性作为 <see cref="ValueGeneratedOnAddOrUpdate" /> 和
+        ///         <see cref="IsConcurrencyToken" />。
         ///     </para>
         ///     <para>
-        ///         Database providers can choose to interpret this in different way, but it is commonly used
-        ///         to indicate some form of automatic row-versioning as used for optimistic concurrency detection.
+        ///         数据库提供者可以选择不同的方式实现它，但它一般被用来实现乐观并发冲突检测所使用的自动行版本。
+        ///         
         ///     </para>
         /// </summary>
-        /// <returns> The same builder instance so that multiple configuration calls can be chained. </returns>
+        /// <returns> 当前生成器实例，以便多个配置可以进行链式调用。 </returns>
         public virtual PropertyBuilder IsRowVersion()
         {
             Builder.ValueGenerated(ValueGenerated.OnAddOrUpdate, ConfigurationSource.Explicit);
@@ -212,14 +212,14 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Builders
         }
 
         /// <summary>
-        ///     Configures whether this property should be used as a concurrency token. When a property is configured
-        ///     as a concurrency token the value in the database will be checked when an instance of this entity type
-        ///     is updated or deleted during <see cref="DbContext.SaveChanges()" /> to ensure it has not changed since
-        ///     the instance was retrieved from the database. If it has changed, an exception will be thrown and the
-        ///     changes will not be applied to the database.
+        ///     配置这个属性是否应该作为一个并发标记使用。
+        ///     当一个属性被作为并发标记配置后。当这个实体类型的实例被更新或删除时，
+        ///     <see cref="DbContext.SaveChanges()" /> 将通过检查数据库中的这个值确保它不会
+        ///     被从数据库中检索的实例修改。
+        ///     如果它被改变了，那么将抛出一个异常，并且这些改变将不能被应用到数据库。
         /// </summary>
-        /// <param name="concurrencyToken"> A value indicating whether this property is a concurrency token. </param>
-        /// <returns> The same builder instance so that multiple configuration calls can be chained. </returns>
+        /// <param name="concurrencyToken"> 一个布尔值，指示这个属性是否为并发标记。 </param>
+        /// <returns> 当前生成器实例，以便多个配置可以进行链式调用。 </returns>
         public virtual PropertyBuilder IsConcurrencyToken(bool concurrencyToken = true)
         {
             Builder.IsConcurrencyToken(concurrencyToken, ConfigurationSource.Explicit);
