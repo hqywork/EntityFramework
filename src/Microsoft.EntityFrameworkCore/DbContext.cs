@@ -971,12 +971,12 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     Provides access to database related information and operations for this context.
+        ///     提供了对当前上下文相关的数据库信息和操作的访问。
         /// </summary>
         public virtual DatabaseFacade Database => _database ?? (_database = new DatabaseFacade(this));
 
         /// <summary>
-        ///     Provides access to information and operations for entity instances this context is tracking.
+        ///     提供了对当前上下文正在跟踪的实体实例信息和操作的访问。
         /// </summary>
         public virtual ChangeTracker ChangeTracker
             => _changeTracker
