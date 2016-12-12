@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Utilities;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     Relational database specific extension methods for metadata.
+    ///   关系数据库特定的元数据扩展方法。
     /// </summary>
     public static class RelationalMetadataExtensions
     {
@@ -30,18 +30,18 @@ namespace Microsoft.EntityFrameworkCore
             => new RelationalPropertyAnnotations(Check.NotNull(property, nameof(property)), null);
 
         /// <summary>
-        ///     Gets the relational database specific metadata for an entity.
+        ///     获取关系数据特定的实体元数据。
         /// </summary>
-        /// <param name="entityType"> The entity to get metadata for. </param>
-        /// <returns> The relational database specific metadata for the entity. </returns>
+        /// <param name="entityType"> 将要获取元数据的实体。 </param>
+        /// <returns> 获取关系数据特定的实体元数据。 </returns>
         public static RelationalEntityTypeAnnotations Relational([NotNull] this IMutableEntityType entityType)
             => (RelationalEntityTypeAnnotations)Relational((IEntityType)entityType);
 
         /// <summary>
-        ///     Gets the relational database specific metadata for an entity.
+        ///     获取关系数据特定的实体元数据。
         /// </summary>
-        /// <param name="entityType"> The entity to get metadata for. </param>
-        /// <returns> The relational database specific metadata for the entity. </returns>
+        /// <param name="entityType"> 将要获取元数据的实体。 </param>
+        /// <returns> 获取关系数据特定的实体元数据。 </returns>
         public static IRelationalEntityTypeAnnotations Relational([NotNull] this IEntityType entityType)
             => new RelationalEntityTypeAnnotations(Check.NotNull(entityType, nameof(entityType)), null);
 
@@ -102,10 +102,10 @@ namespace Microsoft.EntityFrameworkCore
             => (RelationalModelAnnotations)Relational((IModel)model);
 
         /// <summary>
-        ///     Gets the relational database specific metadata for a model.
+        ///     获取关系数据库特定的模型元数据。
         /// </summary>
-        /// <param name="model"> The model to get metadata for. </param>
-        /// <returns> The relational database specific metadata for the model. </returns>
+        /// <param name="model"> 将要获取元数据的模型。 </param>
+        /// <returns> 获取关系数据库特定的模型元数据。 </returns>
         public static IRelationalModelAnnotations Relational([NotNull] this IModel model)
             => new RelationalModelAnnotations(Check.NotNull(model, nameof(model)), null);
     }

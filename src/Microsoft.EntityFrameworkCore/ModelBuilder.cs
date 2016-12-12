@@ -14,13 +14,13 @@ namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
     ///     <para>
-    ///         Provides a simple API surface for configuring a <see cref="IMutableModel" /> that defines the shape of your
-    ///         entities, the relationships between them, and how they map to the database.
+    ///         提供了简单的 API 来配置 <see cref="IMutableModel" />，
+    ///         它定义了你的实体形状，它们之间的关系以及它们如何映射到数据库。
     ///     </para>
     ///     <para>
-    ///         You can use <see cref="ModelBuilder" /> to construct a model for a context by overriding
-    ///         <see cref="DbContext.OnModelCreating(ModelBuilder)" /> on your derived context. Alternatively you can create the
-    ///         model externally and set it on a <see cref="DbContextOptions" /> instance that is passed to the context constructor.
+    ///         你可以通过在你的上下文派生类上重载 <see cref="DbContext.OnModelCreating(ModelBuilder)" />，
+    ///         使用 <see cref="ModelBuilder" /> 来为上下文配置一个模型。
+    ///         你也可以创建一个外部的模型并设置在 <see cref="DbContextOptions" /> 实例上，传递这个实例到上下文的构造函数。
     ///     </para>
     /// </summary>
     public class ModelBuilder : IInfrastructure<InternalModelBuilder>
@@ -28,8 +28,8 @@ namespace Microsoft.EntityFrameworkCore
         private readonly InternalModelBuilder _builder;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ModelBuilder" /> class that will
-        ///     apply a set of conventions.
+        ///     使用一组规则初始化 <see cref="ModelBuilder" /> 类的新实例。
+        ///     
         /// </summary>
         /// <param name="conventions"> The conventions to be applied to the model. </param>
         public ModelBuilder([NotNull] ConventionSet conventions)
@@ -73,20 +73,20 @@ namespace Microsoft.EntityFrameworkCore
         InternalModelBuilder IInfrastructure<InternalModelBuilder>.Instance => _builder;
 
         /// <summary>
-        ///     Returns an object that can be used to configure a given entity type in the model.
-        ///     If the entity type is not already part of the model, it will be added to the model.
+        ///     返回一个可以被用来在模型中配置给定实体类型的对象。
+        ///     如果实体类型不是模型一部分，它将被添加到模型。
         /// </summary>
-        /// <typeparam name="TEntity"> The entity type to be configured. </typeparam>
-        /// <returns> An object that can be used to configure the entity type. </returns>
+        /// <typeparam name="TEntity"> 将要进行配置的实体类型。 </typeparam>
+        /// <returns> 可用被用来配置实体类型的对象。 </returns>
         public virtual EntityTypeBuilder<TEntity> Entity<TEntity>() where TEntity : class
             => new EntityTypeBuilder<TEntity>(Builder.Entity(typeof(TEntity), ConfigurationSource.Explicit));
 
         /// <summary>
-        ///     Returns an object that can be used to configure a given entity type in the model.
-        ///     If the entity type is not already part of the model, it will be added to the model.
+        ///     返回一个可以被用来在模型中配置给定实体类型的对象。
+        ///     如果实体类型不是模型的一部分，它将被添加到模型。
         /// </summary>
-        /// <param name="type"> The entity type to be configured. </param>
-        /// <returns> An object that can be used to configure the entity type. </returns>
+        /// <param name="type"> 将要进行配置的实体类型。 </param>
+        /// <returns> 可用被用来配置实体类型的对象。 </returns>
         public virtual EntityTypeBuilder Entity([NotNull] Type type)
         {
             Check.NotNull(type, nameof(type));
@@ -95,12 +95,12 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     Returns an object that can be used to configure a given entity type in the model.
-        ///     If an entity type with the provided name is not already part of the model,
-        ///     a new entity type that does not have a corresponding CLR type will be added to the model.
+        ///     返回一个可以被用来在模型中配置给定实体类型的对象。
+        ///     如果指定名称的实体类型不是模型的一部分，
+        ///     一个没有对应 CLR 类型的新实体类型将被添加到模型。
         /// </summary>
-        /// <param name="name"> The name of the entity type to be configured. </param>
-        /// <returns> An object that can be used to configure the entity type. </returns>
+        /// <param name="name"> 将被配置的实体类型名称。 </param>
+        /// <returns> 可用被用来配置实体类型的对象。 </returns>
         public virtual EntityTypeBuilder Entity([NotNull] string name)
         {
             Check.NotEmpty(name, nameof(name));
@@ -110,19 +110,19 @@ namespace Microsoft.EntityFrameworkCore
 
         /// <summary>
         ///     <para>
-        ///         Performs configuration of a given entity type in the model. If the entity type is not already part
-        ///         of the model, it will be added to the model.
+        ///         在模型中执行给定实体类型的配置。
+        ///         如果实体类型不是模型的一部分，它将被添加到模型。
         ///     </para>
         ///     <para>
-        ///         This overload allows configuration of the entity type to be done in line in the method call rather
-        ///         than being chained after a call to <see cref="Entity{TEntity}()" />. This allows additional
-        ///         configuration at the model level to be chained after configuration for the entity type.
+        ///         这个重载允许在这个方法内部进行实体类型的配置，而不像 <see cref="Entity{TEntity}()" /> 调用后再进行链式访问。
+        ///         这允许在实体类型配置后通过链式方式附加模型级别的配置。
+        ///         
         ///     </para>
         /// </summary>
-        /// <typeparam name="TEntity"> The entity type to be configured. </typeparam>
-        /// <param name="buildAction"> An action that performs configuration of the entity type. </param>
+        /// <typeparam name="TEntity"> 将要进行配置的实体类型。 </typeparam>
+        /// <param name="buildAction"> 执行实体类型配置的操作。 </param>
         /// <returns>
-        ///     The same <see cref="ModelBuilder" /> instance so that additional configuration calls can be chained.
+        ///     <see cref="ModelBuilder" /> 实例，以便后序以链式方式附加配置。
         /// </returns>
         public virtual ModelBuilder Entity<TEntity>([NotNull] Action<EntityTypeBuilder<TEntity>> buildAction) where TEntity : class
         {
@@ -135,19 +135,19 @@ namespace Microsoft.EntityFrameworkCore
 
         /// <summary>
         ///     <para>
-        ///         Performs configuration of a given entity type in the model. If the entity type is not already part
-        ///         of the model, it will be added to the model.
+        ///         在模型中执行给定实体类型的配置。
+        ///         如果实体类型不是模型的一部分，它将被添加到模型。
         ///     </para>
         ///     <para>
-        ///         This overload allows configuration of the entity type to be done in line in the method call rather
-        ///         than being chained after a call to <see cref="Entity{TEntity}()" />. This allows additional
-        ///         configuration at the model level to be chained after configuration for the entity type.
+        ///         这个重载允许在这个方法内部进行实体类型的配置，而不像 <see cref="Entity{TEntity}()" /> 调用后再进行链式访问。
+        ///         这允许在实体类型配置后通过链式方式附加模型级别的配置。
+        ///         
         ///     </para>
         /// </summary>
-        /// <param name="type"> The entity type to be configured. </param>
-        /// <param name="buildAction"> An action that performs configuration of the entity type. </param>
+        /// <param name="type"> 将要进行配置的实体类型。 </param>
+        /// <param name="buildAction"> 执行实体类型配置的操作。 </param>
         /// <returns>
-        ///     The same <see cref="ModelBuilder" /> instance so that additional configuration calls can be chained.
+        ///     <see cref="ModelBuilder" /> 实例，以便后序以链式方式附加配置。
         /// </returns>
         public virtual ModelBuilder Entity([NotNull] Type type, [NotNull] Action<EntityTypeBuilder> buildAction)
         {
@@ -161,20 +161,20 @@ namespace Microsoft.EntityFrameworkCore
 
         /// <summary>
         ///     <para>
-        ///         Performs configuration of a given entity type in the model.
-        ///         If an entity type with the provided name is not already part of the model,
-        ///         a new entity type that does not have a corresponding CLR type will be added to the model.
+        ///         在模型中执行给定实体类型的配置。
+        ///         如果指定名称的实体类型不是模型的一部分，
+        ///         一个没有对应 CLR 类型的新实体类型将被添加到模型。
         ///     </para>
         ///     <para>
-        ///         This overload allows configuration of the entity type to be done in line in the method call rather
-        ///         than being chained after a call to <see cref="Entity(string)" />. This allows additional
-        ///         configuration at the model level to be chained after configuration for the entity type.
+        ///         这个重载允许在这个方法内部进行实体类型的配置，而不像 <see cref="Entity(string)" /> 调用后再进行链式访问。
+        ///         这允许在实体类型配置后通过链式方式附加模型级别的配置。
+        ///         
         ///     </para>
         /// </summary>
-        /// <param name="name"> The name of the entity type to be configured. </param>
-        /// <param name="buildAction"> An action that performs configuration of the entity type. </param>
+        /// <param name="name"> 将被配置的实体类型名称。 </param>
+        /// <param name="buildAction"> 执行实体类型配置的操作。 </param>
         /// <returns>
-        ///     The same <see cref="ModelBuilder" /> instance so that additional configuration calls can be chained.
+        ///     <see cref="ModelBuilder" /> 实例，以便后序以链式方式附加配置。
         /// </returns>
         public virtual ModelBuilder Entity([NotNull] string name, [NotNull] Action<EntityTypeBuilder> buildAction)
         {
@@ -187,23 +187,23 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     Excludes the given entity type from the model. This method is typically used to remove types from
-        ///     the model that were added by convention.
+        ///     从模型中排队给定实体类型。
+        ///     这个方法通常被用来从已添加规则的模型中移除类型。
         /// </summary>
-        /// <typeparam name="TEntity"> The  entity type to be removed from the model. </typeparam>
+        /// <typeparam name="TEntity"> 将要从模型中移除的实体类型。 </typeparam>
         /// <returns>
-        ///     The same <see cref="ModelBuilder" /> instance so that additional configuration calls can be chained.
+        ///     <see cref="ModelBuilder" /> 实例，以便后序以链式方式附加配置。
         /// </returns>
         public virtual ModelBuilder Ignore<TEntity>() where TEntity : class
             => Ignore(typeof(TEntity));
 
         /// <summary>
-        ///     Excludes the given entity type from the model. This method is typically used to remove types from
-        ///     the model that were added by convention.
+        ///     从模型中排队给定实体类型。
+        ///     这个方法通常被用来从已添加规则的模型中移除类型。
         /// </summary>
-        /// <param name="type"> The entity type to be removed from the model. </param>
+        /// <param name="type"> 将要从模型中移除的实体类型。 </param>
         /// <returns>
-        ///     The same <see cref="ModelBuilder" /> instance so that additional configuration calls can be chained.
+        ///     <see cref="ModelBuilder" /> 实例，以便后序以链式方式附加配置。
         /// </returns>
         public virtual ModelBuilder Ignore([NotNull] Type type)
         {
@@ -231,18 +231,19 @@ namespace Microsoft.EntityFrameworkCore
 
         /// <summary>
         ///     <para>
-        ///         Sets the <see cref="PropertyAccessMode" /> to use for all properties of this entity type.
+        ///         为实体类型的所有属性设置要使用的 <see cref="PropertyAccessMode" />。
         ///     </para>
         ///     <para>
-        ///         By default, the backing field, if one is found by convention or has been specified, is used when
-        ///         new objects are constructed, typically when entities are queried from the database.
-        ///         Properties are used for all other accesses.  Calling this method witll change that behavior
-        ///         for all properties in the model as described in the <see cref="PropertyAccessMode" /> enum.
+        ///         默认情况下，如果是通过规则发现或被指定，那么支持字段将被使用。
+        ///         通常是实体是被从数据库中查询，一个新对象被构造时。
+        ///         属性被所有其他访问使用。
+        ///         调用这个方法将改变模型中所有属性的行为（在 <see cref="PropertyAccessMode" /> 枚举中进行了描述）。
+        ///         
         ///     </para>
         /// </summary>
-        /// <param name="propertyAccessMode"> The <see cref="PropertyAccessMode" /> to use for properties of this model. </param>
+        /// <param name="propertyAccessMode"> 这个模型的属性要使用的 <see cref="PropertyAccessMode" /> </param>
         /// <returns>
-        ///     The same <see cref="ModelBuilder" /> instance so that additional configuration calls can be chained.
+        ///     <see cref="ModelBuilder" /> 实例，以便后序以链式方式附加配置。
         /// </returns>
         public virtual ModelBuilder UsePropertyAccessMode(PropertyAccessMode propertyAccessMode)
         {

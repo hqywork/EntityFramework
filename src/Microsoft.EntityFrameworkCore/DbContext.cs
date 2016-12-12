@@ -78,12 +78,12 @@ namespace Microsoft.EntityFrameworkCore
 
         /// <summary>
         ///     <para>
-        ///         Initializes a new instance of the <see cref="DbContext" /> class using the specified options.
-        ///         The <see cref="OnConfiguring(DbContextOptionsBuilder)" /> method will still be called to allow further
-        ///         configuration of the options.
+        ///         使用指定的选项设置初始化 <see cref="DbContext" /> 的新实例。
+        ///         <see cref="OnConfiguring(DbContextOptionsBuilder)" /> 方法仍然会被调用，允许进一步的配置选项。
+        ///         
         ///     </para>
         /// </summary>
-        /// <param name="options">The options for this context.</param>
+        /// <param name="options">用于当前上下文的选项设置。</param>
         public DbContext([NotNull] DbContextOptions options)
         {
             Check.NotNull(options, nameof(options));
@@ -379,12 +379,12 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     Gets an <see cref="EntityEntry{TEntity}" /> for the given entity. The entry provides
-        ///     access to change tracking information and operations for the entity.
+        ///     获取给定实体的 <see cref="EntityEntry{TEntity}" /> 对象。
+        ///     该入口提供了对改变跟踪信息以及实体操作的访问。
         /// </summary>
-        /// <typeparam name="TEntity"> The type of the entity. </typeparam>
-        /// <param name="entity"> The entity to get the entry for. </param>
-        /// <returns> The entry for the given entity. </returns>
+        /// <typeparam name="TEntity"> 实体的类型。 </typeparam>
+        /// <param name="entity"> 将要获取入口的实体对象。 </param>
+        /// <returns> 给定实体的入口对象。 </returns>
         public virtual EntityEntry<TEntity> Entry<TEntity>([NotNull] TEntity entity) where TEntity : class
         {
             Check.NotNull(entity, nameof(entity));
@@ -399,17 +399,17 @@ namespace Microsoft.EntityFrameworkCore
 
         /// <summary>
         ///     <para>
-        ///         Gets an <see cref="EntityEntry" /> for the given entity. The entry provides
-        ///         access to change tracking information and operations for the entity.
+        ///         获取给定实体的 <see cref="EntityEntry{TEntity}" /> 对象。
+        ///         该入口提供了对改变跟踪信息以及实体操作的访问。
         ///     </para>
         ///     <para>
-        ///         This method may be called on an entity that is not tracked. You can then
-        ///         set the <see cref="EntityEntry.State" /> property on the returned entry
-        ///         to have the context begin tracking the entity in the specified state.
+        ///         这个方法可能在不被跟踪的实体上调用。This method may be called on an entity that is not tracked. You can then
+        ///         你可以在返回的入口上设置 <see cref="EntityEntry.State" /> 属性，
+        ///         让所属的上下文使用指定状态开始跟踪实体。
         ///     </para>
         /// </summary>
-        /// <param name="entity"> The entity to get the entry for. </param>
-        /// <returns> The entry for the given entity. </returns>
+        /// <param name="entity"> 将要获取入口的实体对象。 </param>
+        /// <returns> 给定实体的入口对象。 </returns>
         public virtual EntityEntry Entry([NotNull] object entity)
         {
             Check.NotNull(entity, nameof(entity));

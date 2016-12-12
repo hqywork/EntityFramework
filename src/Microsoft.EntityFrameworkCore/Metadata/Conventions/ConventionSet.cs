@@ -7,83 +7,83 @@ using Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal;
 namespace Microsoft.EntityFrameworkCore.Metadata.Conventions
 {
     /// <summary>
-    ///     Base implementation for a set of conventions used to build a model. This base implementation is an empty set of conventions.
+    ///     规则集的基本实现被用来构建一个模型。这个基本实现是空规则集。
     /// </summary>
     public class ConventionSet
     {
         /// <summary>
-        ///     Conventions to run when an entity type is added to the model.
+        ///     当实体类型被添加到模型后规则运行。
         /// </summary>
         public virtual IList<IEntityTypeConvention> EntityTypeAddedConventions { get; } = new List<IEntityTypeConvention>();
 
         /// <summary>
-        ///     Conventions to run when an entity type is ignored.
+        ///     当实体类型被忽略后规则运行。
         /// </summary>
         public virtual IList<IEntityTypeIgnoredConvention> EntityTypeIgnoredConventions { get; } = new List<IEntityTypeIgnoredConvention>();
 
         /// <summary>
-        ///     Conventions to run when a property is ignored.
+        ///     当属性被忽略后规则被运行。
         /// </summary>
         public virtual IList<IEntityTypeMemberIgnoredConvention> EntityTypeMemberIgnoredConventions { get; } = new List<IEntityTypeMemberIgnoredConvention>();
 
         /// <summary>
-        ///     Conventions to run when the base entity type is set or removed.
+        ///     当基础实体类型被设置或移除后规则运行。
         /// </summary>
         public virtual IList<IBaseTypeConvention> BaseEntityTypeSetConventions { get; } = new List<IBaseTypeConvention>();
 
         /// <summary>
-        ///     Conventions to run when an annotation is set or removed on an entity type.
+        ///     当实体类型上的标注被设置或移除后规则运行。
         /// </summary>
         public virtual IList<IEntityTypeAnnotationSetConvention> EntityTypeAnnotationSetConventions { get; }
             = new List<IEntityTypeAnnotationSetConvention>();
 
         /// <summary>
-        ///     Conventions to run when a foreign key is added.
+        ///     当外键被添加后规则运行。
         /// </summary>
         public virtual IList<IForeignKeyConvention> ForeignKeyAddedConventions { get; } = new List<IForeignKeyConvention>();
 
         /// <summary>
-        ///     Conventions to run when a foreign key is removed.
+        ///     当外键被移除后规则运行。
         /// </summary>
         public virtual IList<IForeignKeyRemovedConvention> ForeignKeyRemovedConventions { get; } = new List<IForeignKeyRemovedConvention>();
 
         /// <summary>
-        ///     Conventions to run when a key is added.
+        ///     当键被添加后规则运行。
         /// </summary>
         public virtual IList<IKeyConvention> KeyAddedConventions { get; } = new List<IKeyConvention>();
 
         /// <summary>
-        ///     Conventions to run when a key is removed.
+        ///     当键被移除规则运行。
         /// </summary>
         public virtual IList<IKeyRemovedConvention> KeyRemovedConventions { get; } = new List<IKeyRemovedConvention>();
 
         /// <summary>
-        ///     Conventions to run when a primary key is configured.
+        ///     当主键被配置后规则运行。
         /// </summary>
         public virtual IList<IPrimaryKeyConvention> PrimaryKeySetConventions { get; } = new List<IPrimaryKeyConvention>();
 
         /// <summary>
-        ///     Conventions to run when an index is added.
+        ///     当索引被添加后规则运行。
         /// </summary>
         public virtual IList<IIndexConvention> IndexAddedConventions { get; } = new List<IIndexConvention>();
 
         /// <summary>
-        ///     Conventions to run when an index is added.
+        ///     当索引被移除后规则运行。
         /// </summary>
         public virtual IList<IIndexRemovedConvention> IndexRemovedConventions { get; } = new List<IIndexRemovedConvention>();
 
         /// <summary>
-        ///     Conventions to run when the uniqueness of an index is changed.
+        ///     当索引的唯一性被改变后规则运行。
         /// </summary>
         public virtual IList<IIndexUniquenessConvention> IndexUniquenessConventions { get; } = new List<IIndexUniquenessConvention>();
 
         /// <summary>
-        ///     Conventions to run when the principal end of a relationship is configured.
+        ///     当关系的主要端点被配置后规则运行。
         /// </summary>
         public virtual IList<IPrincipalEndConvention> PrincipalEndSetConventions { get; } = new List<IPrincipalEndConvention>();
 
         /// <summary>
-        ///     Conventions to run when model building is completed.
+        ///     当模型构建完成后规则运行。
         /// </summary>
         public virtual IList<IModelConvention> ModelBuiltConventions { get; } = new List<IModelConvention>();
 
@@ -93,32 +93,32 @@ namespace Microsoft.EntityFrameworkCore.Metadata.Conventions
         public virtual IList<IModelConvention> ModelInitializedConventions { get; } = new List<IModelConvention>();
 
         /// <summary>
-        ///     Conventions to run when a navigation property is added.
+        ///     当导航属性被添加后规则运行。
         /// </summary>
         public virtual IList<INavigationConvention> NavigationAddedConventions { get; } = new List<INavigationConvention>();
 
         /// <summary>
-        ///     Conventions to run when a navigation property is removed.
+        ///     当导航属性被移除后规则运行。
         /// </summary>
         public virtual IList<INavigationRemovedConvention> NavigationRemovedConventions { get; } = new List<INavigationRemovedConvention>();
 
         /// <summary>
-        ///     Conventions to run when the uniqueness of a foreign key is changed.
+        ///     当外键的唯一性被改变后规则运行。
         /// </summary>
         public virtual IList<IForeignKeyUniquenessConvention> ForeignKeyUniquenessConventions { get; } = new List<IForeignKeyUniquenessConvention>();
 
         /// <summary>
-        ///     Conventions to run when a property is added.
+        ///     当属性被添中后规则运行。
         /// </summary>
         public virtual IList<IPropertyConvention> PropertyAddedConventions { get; } = new List<IPropertyConvention>();
 
         /// <summary>
-        ///     Conventions to run when the nullability of a property is changed.
+        ///     当属性的可为空值被改变后规则运行。
         /// </summary>
         public virtual IList<IPropertyNullableConvention> PropertyNullableChangedConventions { get; } = new List<IPropertyNullableConvention>();
 
         /// <summary>
-        ///     Conventions to run when the field of a property is changed.
+        ///     当属性的字段被改变后规则运行。Conventions to run when the field of a property is changed.
         /// </summary>
         public virtual IList<IPropertyFieldChangedConvention> PropertyFieldChangedConventions { get; } =
             new List<IPropertyFieldChangedConvention>();

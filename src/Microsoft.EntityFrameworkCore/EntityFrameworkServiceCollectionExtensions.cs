@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    ///     Extension methods for setting up Entity Framework related services in an <see cref="IServiceCollection" />.
+    ///     在 <see cref="IServiceCollection" /> 中设置 Entity Framework 相关服务的扩展方法。
     /// </summary>
     public static class EntityFrameworkServiceCollectionExtensions
     {

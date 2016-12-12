@@ -17,14 +17,14 @@ namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
     ///     <para>
-    ///         Provides a simple API surface for configuring <see cref="DbContextOptions" />. Databases (and other extensions)
-    ///         typically define extension methods on this object that allow you to configure the database connection (and other
-    ///         options) to be used for a context.
+    ///         提供了一个简单 API 来配置 <see cref="DbContextOptions" />. 
+    ///         数据库（以及其它扩展）通常在这个对象上定义扩展方法，
+    ///         允许你配置数据库连接（以及其它选项）以供上下文使用。
     ///     </para>
     ///     <para>
-    ///         You can use <see cref="DbContextOptionsBuilder" /> to configure a context by overriding
-    ///         <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> or creating a <see cref="DbContextOptions" />
-    ///         externally and passing it to the context constructor.
+    ///         你可以通过重载 <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> 
+    ///         或创建一个外部的 <see cref="DbContextOptions" /> 并传递给上下文的构造
+    ///         来配置一个上下文。
     ///     </para>
     /// </summary>
     public class DbContextOptionsBuilder : IDbContextOptionsBuilderInfrastructure
@@ -32,7 +32,7 @@ namespace Microsoft.EntityFrameworkCore
         private DbContextOptions _options;
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="DbContextOptionsBuilder" /> class with no options set.
+        ///     无选项设置初始化 <see cref="DbContextOptionsBuilder" /> 的新实例。
         /// </summary>
         public DbContextOptionsBuilder()
             : this(new DbContextOptions<DbContext>())
@@ -70,11 +70,11 @@ namespace Microsoft.EntityFrameworkCore
         public virtual bool IsConfigured => _options.Extensions.Any();
 
         /// <summary>
-        ///     Sets the model to be used for the context. If the model is set, then <see cref="DbContext.OnModelCreating(ModelBuilder)" />
-        ///     will not be run.
+        ///     设置被上下文使用的模型 If the model is set, then <see cref="DbContext.OnModelCreating(ModelBuilder)" />
+        ///     如果模型被设置，那么 <see cref="DbContext.OnModelCreating(ModelBuilder)" /> 方法将不会运行。
         /// </summary>
-        /// <param name="model"> The model to be used. </param>
-        /// <returns> The same builder instance so that multiple calls can be chained. </returns>
+        /// <param name="model"> 将被使用的模型。 </param>
+        /// <returns> 当前生成器实例，以便进行多个链接调用。 </returns>
         public virtual DbContextOptionsBuilder UseModel([NotNull] IModel model)
             => SetOption(e => e.Model = Check.NotNull(model, nameof(model)));
 

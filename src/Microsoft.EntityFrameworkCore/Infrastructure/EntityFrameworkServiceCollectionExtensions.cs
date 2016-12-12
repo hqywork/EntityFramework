@@ -19,38 +19,38 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Remotion.Linq.Parsing.Structure.NodeTypeProviders;
 
-// Intentionally in this namespace since this is for use by other relational providers rather than
-// by top-level app developers.
+// 有意放置在这个命名空间中，因为这是为其它相关提供者使用的，
+// 而不是为顶级应用开发人员准备的。
 namespace Microsoft.EntityFrameworkCore.Infrastructure
 {
     /// <summary>
-    ///     Extension methods for setting up Entity Framework related services in an <see cref="IServiceCollection" />.
+    ///     在 <see cref="IServiceCollection" /> 中设置 Entity Framework 相关服务的扩展方法。
     /// </summary>
     public static class EntityFrameworkServiceCollectionExtensions
     {
         /// <summary>
-        ///     Adds the services required by the core of Entity Framework to an <see cref="IServiceCollection" />.
-        ///     You use this method when using dependency injection in your application, such as with ASP.NET.
-        ///     For more information on setting up dependency injection, see http://go.microsoft.com/fwlink/?LinkId=526890.
+        ///     添加 Entity Framework 核心必须的服务到 <see cref="IServiceCollection" />。
+        ///     当你在你的应用程序中使用依赖注入时使用这个方法，如 ASP.NET 应用程序。
+        ///     有关设置依赖注入的更多信息，请参阅，see http://go.microsoft.com/fwlink/?LinkId=526890.
         /// </summary>
         /// <remarks>
         ///     <para>
-        ///         You only need to use this functionality when you want Entity Framework to resolve the services it uses
-        ///         from an external <see cref="IServiceProvider" />. If you are not using an external
-        ///         <see cref="IServiceProvider" /> Entity Framework will take care of creating the services it requires.
+        ///         当你想让 Entity Framework 解析从外部 <see cref="IServiceProvider" /> 获取的服务，你仅需要使用这个功能。
+        ///         如果你不使用外部 <see cref="IServiceProvider" />，Entity Framework 将创建它需要的服务。
+        ///         
         ///     </para>
         ///     <para>
-        ///         The database you are using will also define extension methods that can be called on the returned
-        ///         <see cref="IServiceCollection" /> to register the services required by the database.
-        ///         For example, when using Microsoft.EntityFrameworkCore.SqlServer you would call
-        ///         <c>collection.AddEntityFrameworkSqlServer()</c>.
+        ///         你同样可以在返回的 <see cref="IServiceCollection" /> 上调用数据库定义的扩展方法来注册数据库所必需的服务。
+        ///         例如，当使用 Microsoft.EntityFrameworkCore.SqlServer 时，你应该调用 
+        ///         <c>collection.AddEntityFrameworkSqlServer()</c>。
+        ///         
         ///     </para>
         ///     <para>
-        ///         For derived contexts to be registered in the <see cref="IServiceProvider" /> and resolve their services
-        ///         from the <see cref="IServiceProvider" /> you must chain a call to the
+        ///         对于在 <see cref="IServiceProvider" /> 中注册派生上下文，以及从 <see cref="IServiceProvider" /> 解析它们的服务，
+        ///         你必须在返回的 <see cref="IServiceCollection" /> 上以链式方式调用
         ///         <see
         ///             cref="Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext{TContext}(IServiceCollection, Action{DbContextOptionsBuilder}, ServiceLifetime)" />
-        ///         method on the returned <see cref="IServiceCollection" />.
+        ///         方法。
         ///     </para>
         /// </remarks>
         /// <example>
@@ -63,9 +63,9 @@ namespace Microsoft.EntityFrameworkCore.Infrastructure
         ///         }
         ///     </code>
         /// </example>
-        /// <param name="serviceCollection"> The <see cref="IServiceCollection" /> to add services to. </param>
+        /// <param name="serviceCollection"> 服务将添加到的 <see cref="IServiceCollection" />。 </param>
         /// <returns>
-        ///     A builder that allows further Entity Framework specific setup of the <see cref="IServiceCollection" />.
+        ///     明确设置了 Entity Framework 的 <see cref="IServiceCollection" />。
         /// </returns>
         public static IServiceCollection AddEntityFramework(
             [NotNull] this IServiceCollection serviceCollection)
