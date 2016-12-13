@@ -12,7 +12,7 @@ namespace Microsoft.EntityFrameworkCore.Infrastructure
     ///         可被存储到 <see cref="DbContextOptions.Extensions" /> 中的扩展接口。
     ///     </para>
     ///     <para>
-    ///         这个接口通常被数据库提供者（以及其它扩展）使用。This interface is typically used by database providers (and other extensions). It is generally
+    ///         这个接口通常被数据库提供者（以及其它扩展）使用。
     ///         通常不被应用程序代码使用。
     ///     </para>
     /// </summary>
