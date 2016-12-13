@@ -22,21 +22,21 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    ///     SQL Server specific extension methods for <see cref="IServiceCollection" />.
+    ///     特定于 SQL Server 的 <see cref="IServiceCollection" /> 扩展方法。
     /// </summary>
     public static class SqlServerServiceCollectionExtensions
     {
         /// <summary>
         ///     <para>
-        ///         Adds the services required by the Microsoft SQL Server database provider for Entity Framework
-        ///         to an <see cref="IServiceCollection" />. You use this method when using dependency injection
-        ///         in your application, such as with ASP.NET. For more information on setting up dependency
-        ///         injection, see http://go.microsoft.com/fwlink/?LinkId=526890.
+        ///         添加使用 Entity Framework 的 Microsoft SQL Server 数据库提供者必需的服务到 <see cref="IServiceCollection" />。
+        ///         当你在应用程序中使用了依赖注入时你可以使用这个方法，如 ASP.NET。
+        ///         关于设置依赖注入的更多信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=526890。
+        ///         
         ///     </para>
         ///     <para>
-        ///         You only need to use this functionality when you want Entity Framework to resolve the services it uses
-        ///         from an external dependency injection container. If you are not using an external
-        ///         dependency injection container, Entity Framework will take care of creating the services it requires.
+        ///         当你想 Entity Framework 使用外部依赖注入容器来解析服务时，你只需要使用这个功能。
+        ///         如果你不使用外部依赖注入容器，Entity Framework 将创建它需求的服务。
+        ///         
         ///     </para>
         /// </summary>
         /// <example>
@@ -53,9 +53,9 @@ namespace Microsoft.Extensions.DependencyInjection
         ///          }
         ///      </code>
         /// </example>
-        /// <param name="services"> The <see cref="IServiceCollection" /> to add services to. </param>
+        /// <param name="services"> 要添加服务的 <see cref="IServiceCollection" />。 </param>
         /// <returns>
-        ///     The same service collection so that multiple calls can be chained.
+        ///     与调用时一样的服务集合，以便以链式方式进行多个调用。
         /// </returns>
         public static IServiceCollection AddEntityFrameworkSqlServer([NotNull] this IServiceCollection services)
         {

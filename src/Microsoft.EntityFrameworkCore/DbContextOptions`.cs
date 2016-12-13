@@ -11,18 +11,18 @@ using Microsoft.EntityFrameworkCore.Utilities;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     The options to be used by a <see cref="DbContext" />. You normally override
-    ///     <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> or use a <see cref="DbContextOptionsBuilder{TContext}" />
-    ///     to create instances of this class and it is not designed to be directly constructed in your application code.
+    ///     被 <see cref="DbContext" /> 使用的选项设置。
+    ///     你通常是重载 <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> 或
+    ///     使用 <see cref="DbContextOptionsBuilder{TContext}" /> 来创建这个类的实例。
     /// </summary>
-    /// <typeparam name="TContext"> The type of the context these options apply to. </typeparam>
+    /// <typeparam name="TContext"> 这些选项被应用到的上下文类型。 </typeparam>
     public class DbContextOptions<TContext> : DbContextOptions
         where TContext : DbContext
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="DbContextOptions{TContext}" /> class. You normally override
-        ///     <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> or use a <see cref="DbContextOptionsBuilder{TContext}" />
-        ///     to create instances of this class and it is not designed to be directly constructed in your application code.
+        ///     初始化 <see cref="DbContextOptions{TContext}" /> 的新实例。
+        ///     你通常是重载 <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> 或
+        ///     使用 <see cref="DbContextOptionsBuilder{TContext}" /> 来创建这个类的实例。
         /// </summary>
         public DbContextOptions()
             : base(new Dictionary<Type, IDbContextOptionsExtension>())
@@ -30,11 +30,11 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="DbContextOptions{TContext}" /> class. You normally override
-        ///     <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> or use a <see cref="DbContextOptionsBuilder{TContext}" />
-        ///     to create instances of this class and it is not designed to be directly constructed in your application code.
+        ///     初始化 <see cref="DbContextOptions{TContext}" /> 的新实例。
+        ///     你通常是重载 <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> 或
+        ///     使用 <see cref="DbContextOptionsBuilder{TContext}" /> 来创建这个类的实例。
         /// </summary>
-        /// <param name="extensions"> The extensions that store the configured options. </param>
+        /// <param name="extensions"> 存储配置选项的扩展。 </param>
         public DbContextOptions(
             [NotNull] IReadOnlyDictionary<Type, IDbContextOptionsExtension> extensions)
             : base(extensions)
@@ -42,11 +42,11 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     Adds the given extension to the options.
+        ///     添加给定扩展到选项。
         /// </summary>
-        /// <typeparam name="TExtension"> The type of extension to be added. </typeparam>
-        /// <param name="extension"> The extension to be added. </param>
-        /// <returns> The same options instance so that multiple calls can be chained. </returns>
+        /// <typeparam name="TExtension"> 将要添加扩展的类型。 </typeparam>
+        /// <param name="extension"> 将要添加的扩展。 </param>
+        /// <returns> 当前选项设置实例，以便多个调用可以被链式调用。 </returns>
         public override DbContextOptions WithExtension<TExtension>(TExtension extension)
         {
             Check.NotNull(extension, nameof(extension));
@@ -58,7 +58,7 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     The type of context that these options are for (<typeparamref name="TContext" />).
+        ///     这些选项服务的上下文类型（<typeparamref name="TContext" />）。
         /// </summary>
         public override Type ContextType => typeof(TContext);
     }

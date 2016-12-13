@@ -32,7 +32,7 @@ namespace Microsoft.EntityFrameworkCore
         private DbContextOptions _options;
 
         /// <summary>
-        ///     无选项设置初始化 <see cref="DbContextOptionsBuilder" /> 的新实例。
+        ///     初始化 <see cref="DbContextOptionsBuilder" /> 的新实例。
         /// </summary>
         public DbContextOptionsBuilder()
             : this(new DbContextOptions<DbContext>())
@@ -40,10 +40,10 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="DbContextOptionsBuilder" /> class to further configure
-        ///     a given <see cref="DbContextOptions" />.
+        ///     初始化 <see cref="DbContextOptionsBuilder" /> 的新实例，
+        ///     用来更进一步的配置给定的 <see cref="DbContextOptions" />。
         /// </summary>
-        /// <param name="options"> The options to be configured. </param>
+        /// <param name="options"> 将被配置的选项。 </param>
         public DbContextOptionsBuilder([NotNull] DbContextOptions options)
         {
             Check.NotNull(options, nameof(options));
@@ -183,22 +183,21 @@ namespace Microsoft.EntityFrameworkCore
 
         /// <summary>
         ///     <para>
-        ///         Replaces the internal Entity Framework implementation of a service contract with a different
-        ///         implementation.
+        ///         使用一个不同的实现替换 Entity Framework 内部的服务契约的实现。
+        ///         
         ///     </para>
         ///     <para>
-        ///         This method can only be used when EF is building and managing its internal service provider.
-        ///         If the service provider is being built externally and passed to
-        ///         <see cref="UseInternalServiceProvider" />, then replacement services should be configured on
-        ///         that service provider before it is passed to EF.
+        ///         这个方法仅当 EF 的构造和管理是使用内部服务提供者时被使用。
+        ///         如果服务提供者是在外部构造的，并通过 <see cref="UseInternalServiceProvider" /> 传递的，
+        ///         那么替换服务应该是在服务提供者传递给 EF 之前被配置。
         ///     </para>
         ///     <para>
-        ///         The replacement service gets the same scope as the EF service that it is replacing.
+        ///         替换服务获取的 EF 服务与被替换的服务有相同的作用域。
         ///     </para>
         /// </summary>
-        /// <typeparam name="TService"> The type (usually an interface) that defines the contract of the service to replace. </typeparam>
-        /// <typeparam name="TImplementation"> The new implementation type for the service. </typeparam>
-        /// <returns> The same builder instance so that multiple calls can be chained. </returns>
+        /// <typeparam name="TService"> 将要替换的服务契约类型（通常是一个接口）。 </typeparam>
+        /// <typeparam name="TImplementation"> 服务新的实现类型。 </typeparam>
+        /// <returns> 当前生成器实例，以便进行多个链接调用。 </returns>
         public virtual DbContextOptionsBuilder ReplaceService<TService, TImplementation>() where TImplementation : TService
             => SetOption(e => e.ReplaceService(typeof(TService), typeof(TImplementation)));
 

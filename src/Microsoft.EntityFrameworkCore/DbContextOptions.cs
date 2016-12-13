@@ -18,11 +18,11 @@ namespace Microsoft.EntityFrameworkCore
     public abstract class DbContextOptions : IDbContextOptions
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="DbContextOptions" /> class. You normally override
-        ///     <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> or use a <see cref="DbContextOptionsBuilder" />
-        ///     to create instances of this class and it is not designed to be directly constructed in your application code.
+        ///     初始化 <see cref="DbContextOptions" /> 的新实例。Initializes a new instance of the <see cref="DbContextOptions" /> class. 
+        ///     你通常重载 <see cref="DbContext.OnConfiguring(DbContextOptionsBuilder)" /> 或使用 <see cref="DbContextOptionsBuilder" />
+        ///     来创建这个类的实例。并且它被设计为不能在应用程序代码中直接构造。
         /// </summary>
-        /// <param name="extensions"> The extensions that store the configured options. </param>
+        /// <param name="extensions"> 存储配置选项的扩展。 </param>
         protected DbContextOptions(
             [NotNull] IReadOnlyDictionary<Type, IDbContextOptionsExtension> extensions)
         {
@@ -32,15 +32,15 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     Gets the extensions that store the configured options.
+        ///     获取存储配置选项的扩展。
         /// </summary>
         public virtual IEnumerable<IDbContextOptionsExtension> Extensions => _extensions.Values;
 
         /// <summary>
-        ///     Gets the extension of the specified type. Returns null if no extension of the specified type is configured.
+        ///     获取指定类型的扩展。如果指定类型的扩展未配置则返回空引用（<c>null</c>）。
         /// </summary>
-        /// <typeparam name="TExtension"> The type of the extension to get. </typeparam>
-        /// <returns> The extension, or null if none was found. </returns>
+        /// <typeparam name="TExtension"> 要获取扩展的类型。 </typeparam>
+        /// <returns> 扩展对象，或空引用（<c>null</c>，未找到时）。 </returns>
         public virtual TExtension FindExtension<TExtension>()
             where TExtension : class, IDbContextOptionsExtension
         {
@@ -49,10 +49,10 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     Gets the extension of the specified type. Throws if no extension of the specified type is configured.
+        ///     获取指定类型的扩展。如果指定类型的扩展未配置则抛出异常。
         /// </summary>
-        /// <typeparam name="TExtension"> The type of the extension to get. </typeparam>
-        /// <returns> The extension. </returns>
+        /// <typeparam name="TExtension"> 要获取扩展的类型。 </typeparam>
+        /// <returns> 扩展对象。 </returns>
         public virtual TExtension GetExtension<TExtension>()
             where TExtension : class, IDbContextOptionsExtension
         {
@@ -65,7 +65,7 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     添加给定扩展到选项设置。
+        ///     添加给定扩展到选项。
         /// </summary>
         /// <typeparam name="TExtension"> 将要添加扩展的类型。 </typeparam>
         /// <param name="extension"> 将要添加的扩展。 </param>
@@ -76,8 +76,8 @@ namespace Microsoft.EntityFrameworkCore
         private readonly IReadOnlyDictionary<Type, IDbContextOptionsExtension> _extensions;
 
         /// <summary>
-        ///     The type of context that these options are for. Will return <see cref="DbContext" /> if the
-        ///     options are not built for a specific derived context.
+        ///     这些选项服务的上下文类型。
+        ///     如果选项不是为指定派生上下文服务的，那么将返回 <see cref="DbContext" />。
         /// </summary>
         public abstract Type ContextType { get; }
     }

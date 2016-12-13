@@ -9,21 +9,21 @@ namespace Microsoft.EntityFrameworkCore.Infrastructure
 {
     /// <summary>
     ///     <para>
-    ///         Interface for extensions that are stored in <see cref="DbContextOptions.Extensions" />.
+    ///         可被存储到 <see cref="DbContextOptions.Extensions" /> 中的扩展接口。
     ///     </para>
     ///     <para>
-    ///         This interface is typically used by database providers (and other extensions). It is generally
-    ///         not used in application code.
+    ///         这个接口通常被数据库提供者（以及其它扩展）使用。This interface is typically used by database providers (and other extensions). It is generally
+    ///         通常不被应用程序代码使用。
     ///     </para>
     /// </summary>
     public interface IDbContextOptionsExtension
     {
         /// <summary>
-        ///     Adds the services required to make the selected options work. This is used when there is no external <see cref="IServiceProvider" />
-        ///     and EF is maintaining its own service provider internally. This allows database providers (and other extensions) to register their
-        ///     required services when EF is creating an service provider.
+        ///     添加所需服务来完成待定的选项工作。
+        ///     当 EF 没有外部 <see cref="IServiceProvider" /> 并且自己维护内部服务提供者时被使用。
+        ///     这允许数据提供者（以及其它扩展）在 EF 创建服务提供者时注册它们所需的服务。
         /// </summary>
-        /// <param name="services"> The collection to add services to. </param>
+        /// <param name="services"> 由将要添加到扩展中的服务构成的集合。 </param>
         void ApplyServices([NotNull] IServiceCollection services);
     }
 }
