@@ -22,26 +22,26 @@ using Microsoft.Extensions.Logging;
 namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
-    ///     A DbContext instance represents a session with the database and can be used to query and save
-    ///     instances of your entities. DbContext is a combination of the Unit Of Work and Repository patterns.
+    ///     一个 `DbContext` 实例代表一个数据库会话，可以用来查询和保存实体的实例。
+    ///     DbContext 是工作单元（Unit Of Work）和仓储（Repository）模式的组合。
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///         Typically you create a class that derives from DbContext and contains <see cref="DbSet{TEntity}" />
-    ///         properties for each entity in the model. If the <see cref="DbSet{TEntity}" /> properties have a public setter,
-    ///         they are automatically initialized when the instance of the derived context is created.
+    ///         通常你创建一个从 DbContext 派生的类，并且包含了为模型中的每个实体创建 <see cref="DbSet{TEntity}" /> 属性。
+    ///         如果 <see cref="DbSet{TEntity}" /> 属性拥有一个公共 setter，
+    ///         那么当派生上下文的实例被创建时它们会被自动初始化。
     ///     </para>
     ///     <para>
-    ///         Override the <see cref="OnConfiguring(DbContextOptionsBuilder)" /> method to configure the database (and
-    ///         other options) to be used for the context. Alternatively, if you would rather perform configuration externally
-    ///         instead of inline in your context, you can use <see cref="DbContextOptionsBuilder{TContext}" />
-    ///         (or <see cref="DbContextOptionsBuilder" />) to externally create an instance of <see cref="DbContextOptions{TContext}" />
-    ///         (or <see cref="DbContextOptions" />) and pass it to a base constructor of <see cref="DbContext" />.
+    ///         重载 <see cref="OnConfiguring(DbContextOptionsBuilder)" /> 方法来配置数据库（以及其它选项）。
+    ///         另外，如果你想在外部执行配置而不是上下文内容，你可以使用 <see cref="DbContextOptionsBuilder{TContext}" />（或 <see cref="DbContextOptionsBuilder" />）
+    ///         在外部创建一个 <see cref="DbContextOptions{TContext}" /> （或 <see cref="DbContextOptions" />）的实例，
+    ///         并传递给 <see cref="DbContext" /> 的基类构造函数。
+    ///         
     ///     </para>
     ///     <para>
-    ///         The model is discovered by running a set of conventions over the entity classes found in the
-    ///         <see cref="DbSet{TEntity}" /> properties on the derived context. To further configure the model that
-    ///         is discovered by convention, you can override the <see cref="OnModelCreating(ModelBuilder)" /> method.
+    ///         模型是通过在上下文派生类上的 <see cref="DbSet{TEntity}" /> 属性中运行一系列贯例的实体类来发现的。
+    ///         要进一步配置通过贯例发现的模型，你可以重写 <see cref="OnModelCreating(ModelBuilder)" /> 方法。
+    ///         
     ///     </para>
     /// </remarks>
     public class DbContext : IDisposable, IInfrastructure<IServiceProvider>
@@ -66,9 +66,9 @@ namespace Microsoft.EntityFrameworkCore
 
         /// <summary>
         ///     <para>
-        ///         Initializes a new instance of the <see cref="DbContext" /> class. The
-        ///         <see cref="OnConfiguring(DbContextOptionsBuilder)" />
-        ///         method will be called to configure the database (and other options) to be used for this context.
+        ///         初始化 <see cref="DbContext" /> 类的新实例。Initializes a new instance of the <see cref="DbContext" />。
+        ///         <see cref="OnConfiguring(DbContextOptionsBuilder)" /> 方法将被调用来配置当前上下文使用的数据（以及其它选项）。
+        ///         
         ///     </para>
         /// </summary>
         protected DbContext()
@@ -234,25 +234,25 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     Saves all changes made in this context to the database.
+        ///     保存当前上下文中所有的更改到数据库。
         /// </summary>
         /// <remarks>
-        ///     This method will automatically call <see cref="ChangeTracking.ChangeTracker.DetectChanges" /> to discover any
-        ///     changes to entity instances before saving to the underlying database. This can be disabled via
-        ///     <see cref="ChangeTracking.ChangeTracker.AutoDetectChangesEnabled" />.
+        ///     这个方法将自动调用 <see cref="ChangeTracking.ChangeTracker.DetectChanges" /> 来发现保存到底层数据库之前的所有对实体实例的变更。
+        ///     这可以通过 <see cref="ChangeTracking.ChangeTracker.AutoDetectChangesEnabled" /> 来禁用。
+        ///     
         /// </remarks>
         /// <returns>
-        ///     The number of state entries written to the database.
+        ///     被写入到数据库的状态条目的个数。
         /// </returns>
         [DebuggerStepThrough]
         public virtual int SaveChanges() => SaveChanges(acceptAllChangesOnSuccess: true);
 
         /// <summary>
-        ///     Saves all changes made in this context to the database.
+        ///     保存当前上下文中所有的更改到数据库。
         /// </summary>
         /// <param name="acceptAllChangesOnSuccess">
-        ///     Indicates whether <see cref="ChangeTracking.ChangeTracker.AcceptAllChanges" /> is called after the changes have
-        ///     been sent successfully to the database.
+        ///     指示在更改已经被成功发送到数据库后是否调用 <see cref="ChangeTracking.ChangeTracker.AcceptAllChanges" />。
+        ///     
         /// </param>
         /// <remarks>
         ///     This method will automatically call <see cref="ChangeTracking.ChangeTracker.DetectChanges" /> to discover any
