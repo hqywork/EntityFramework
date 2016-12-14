@@ -216,18 +216,18 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     重载这个方法来深层次的配置模型，这些模型依照惯例是被从你派生的上下文中公开的 
-        ///     <see cref="DbSet{TEntity}" /> 类型属性发现的。
-        ///     由此产生的模型可能会被缓存，并可以被后序你派生的上下文实例重用。
+        ///     重载这个方法来进一步的配置模型，这些模型是依照约定从你派生的上下文中公开的 
+        ///     <see cref="DbSet{TEntity}" /> 类型的属性中发现的。
+        ///     由此产生的模型可能会被缓存，并可以被随后派生的上下文实例重用。
         /// </summary>
         /// <remarks>
         ///     如果模型是在你的上下文中明确设置的（通过 <see cref="DbContextOptionsBuilder.UseModel(IModel)" />），
         ///     那么这个方法将不会运行。
         /// </remarks>
         /// <param name="modelBuilder">
-        ///     为当前上下文构建模型的生成器。
-        ///     数据库（以及其它扩展）通常在这个对象上定义了扩展方法，
-        ///     允许你为模型配置特定于给定数据库的方面。
+        ///     一个生成器，被用来为当前上下文构造模型。
+        ///     数据库（以及其它扩展方法）通常在这个对象上定义了扩展方法，
+        ///     允许你为特定的给定数据库进行模型方面的配置。
         /// </param>
         protected internal virtual void OnModelCreating(ModelBuilder modelBuilder)
         {

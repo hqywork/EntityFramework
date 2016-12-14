@@ -11,36 +11,36 @@ namespace Microsoft.EntityFrameworkCore.Infrastructure
 {
     /// <summary>
     ///     <para>
-    ///         Extension methods for <see cref="IInfrastructure{T}" />.
+    ///         用于 <see cref="IInfrastructure{T}" /> 的扩展方法。
     ///     </para>
     ///     <para>
-    ///         These methods are typically used by database providers (and other extensions). They are generally
-    ///         not used in application code.
+    ///         这些方法通常被数据库提供者（以及其它扩展）使用。
+    ///         它一般不被应用程序代码使用。
     ///     </para>
     ///     <para>
-    ///         <see cref="IInfrastructure{T}" /> is used to hide properties that are not intended to be used in
-    ///         application code but can be used in extension methods written by database providers etc.
+    ///         <see cref="IInfrastructure{T}" /> 是用来隐藏属性，原打算不能被应用程序代码使用，
+    ///         但可以被使用来为数据库提供者编写扩展方法是。
     ///     </para>
     /// </summary>
     public static class AccessorExtensions
     {
         /// <summary>
         ///     <para>
-        ///         Resolves a service from the <see cref="IServiceProvider" /> exposed from a type that implements
-        ///         <see cref="IInfrastructure{IServiceProvider}" />.
+        ///         从 <see cref="IInfrastructure{IServiceProvider}" /> 的实现类型中公开的 <see cref="IServiceProvider" /> 中解析一个服务。
+        ///         
         ///     </para>
         ///     <para>
-        ///         This method is typically used by database providers (and other extensions). It is generally
-        ///         not used in application code.
+        ///         这个类型通常是被数据库提供者（以及其它扩展）使用。
+        ///         它一般不被应用程序代码使用。
         ///     </para>
         ///     <para>
-        ///         <see cref="IInfrastructure{T}" /> is used to hide properties that are not intended to be used in
-        ///         application code but can be used in extension methods written by database providers etc.
+        ///         <see cref="IInfrastructure{T}" /> 是用来隐藏属性，原打算不能被应用程序代码使用，
+        ///         但可以被使用来为数据库提供者编写扩展方法是。
         ///     </para>
         /// </summary>
-        /// <typeparam name="TService"> The type of service to be resolved. </typeparam>
-        /// <param name="accessor"> The object exposing the service provider. </param>
-        /// <returns> The requested service. </returns>
+        /// <typeparam name="TService"> 将要被解析服务的类型。 </typeparam>
+        /// <param name="accessor"> 公开了服务提供者的对象。 </param>
+        /// <returns> 所需的服务。 </returns>
         public static TService GetService<TService>([NotNull] this IInfrastructure<IServiceProvider> accessor)
         {
             Check.NotNull(accessor, nameof(accessor));
@@ -57,20 +57,20 @@ namespace Microsoft.EntityFrameworkCore.Infrastructure
 
         /// <summary>
         ///     <para>
-        ///         Gets the value from a property that is being hidden using <see cref="IInfrastructure{T}" />.
+        ///         获取被 <see cref="IInfrastructure{T}" /> 隐藏起来的属性的值。
         ///     </para>
         ///     <para>
-        ///         This method is typically used by database providers (and other extensions). It is generally
-        ///         not used in application code.
+        ///         这个类型通常是被数据库提供者（以及其它扩展）使用。
+        ///         它一般不被应用程序代码使用。
         ///     </para>
         ///     <para>
-        ///         <see cref="IInfrastructure{T}" /> is used to hide properties that are not intended to be used in
-        ///         application code but can be used in extension methods written by database providers etc.
+        ///         <see cref="IInfrastructure{T}" /> 是用来隐藏属性，原打算不能被应用程序代码使用，
+        ///         但可以被使用来为数据库提供者编写扩展方法是。
         ///     </para>
         /// </summary>
-        /// <typeparam name="T"> The type of the property being hidden by <see cref="IInfrastructure{T}" />. </typeparam>
-        /// <param name="accessor"> The object that exposes the property. </param>
-        /// <returns> The object assigned to the property. </returns>
+        /// <typeparam name="T"> 被 <see cref="IInfrastructure{T}" /> 隐藏起来的属性的类型。 </typeparam>
+        /// <param name="accessor"> 公开属性的对象。 </param>
+        /// <returns> 指向属性的对象。 </returns>
         public static T GetInfrastructure<T>([NotNull] this IInfrastructure<T> accessor)
             => Check.NotNull(accessor, nameof(accessor)).Instance;
     }
