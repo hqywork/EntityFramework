@@ -15,14 +15,14 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
 {
     /// <summary>
     ///     <para>
-    ///         Provides access to change tracking information and operations for a given entity.
+    ///         提供了对给定实体的改变跟踪信息和操作的访问。
     ///     </para>
     ///     <para>
-    ///         Instances of this class are returned from methods when using the <see cref="ChangeTracker" /> API and it is
-    ///         not designed to be directly constructed in your application code.
+    ///         当使用 <see cref="ChangeTracker" /> API 时，这个类的实例被返回，
+    ///         它不是被设计为在你的应用程序代码中直接构造。
     ///     </para>
     /// </summary>
-    /// <typeparam name="TEntity"> The type of entity being tracked by this entry. </typeparam>
+    /// <typeparam name="TEntity"> 正在被当前项跟踪的实体类型。 </typeparam>
     public class EntityEntry<TEntity> : EntityEntry
         where TEntity : class
     {
@@ -36,19 +36,19 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         }
 
         /// <summary>
-        ///     Gets the entity being tracked by this entry.
+        ///     获取当前项正在被跟踪的实体对象。
         /// </summary>
         public new virtual TEntity Entity => (TEntity)base.Entity;
 
         /// <summary>
-        ///     Provides access to change tracking information and operations for a given
-        ///     property of this entity.
+        ///     提供了对实体的给定属性的改变跟踪和操作的访问。
+        ///     
         /// </summary>
         /// <param name="propertyExpression">
-        ///     A lambda expression representing the property to access information and operations for
-        ///     (<c>t => t.Property1</c>).
+        ///     一个 Lambda 表示式，表示将要访问信息及操作的属性
+        ///     (<c>t => t.Property1</c>)。
         /// </param>
-        /// <returns> An object that exposes change tracking information and operations for the given property. </returns>
+        /// <returns> 为给定属性公开了改变跟踪信息和操作的对象。 </returns>
         public virtual PropertyEntry<TEntity, TProperty> Property<TProperty>(
             [NotNull] Expression<Func<TEntity, TProperty>> propertyExpression)
         {
@@ -58,16 +58,16 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         }
 
         /// <summary>
-        ///     Provides access to change tracking and loading information for a reference (i.e. non-collection)
-        ///     navigation property that associates this entity to another entity.
+        ///     提供了对实体的给定引用（即非集合）导航属性的改变跟踪和加载信息的访问，
+        ///     该属性用于这个实体与其它实体的关联。
         /// </summary>
         /// <param name="propertyExpression">
-        ///     A lambda expression representing the property to access information and operations for
-        ///     (<c>t => t.Property1</c>).
+        ///     一个 Lambda 表示式，表示将要访问信息及操作的属性
+        ///     (<c>t => t.Property1</c>)。
         /// </param>
         /// <returns>
-        ///     An object that exposes change tracking information and operations for the
-        ///     given navigation property.
+        ///     为给定导航属性公开了改变跟踪信息和操作的对象。
+        ///     
         /// </returns>
         public virtual ReferenceEntry<TEntity, TProperty> Reference<TProperty>(
             [NotNull] Expression<Func<TEntity, TProperty>> propertyExpression)
@@ -79,16 +79,16 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         }
 
         /// <summary>
-        ///     Provides access to change tracking and loading information for a collection
-        ///     navigation property that associates this entity to a collection of another entities.
+        ///     提供了对实体给定集合导航属性的改变跟踪和加载信息的访问，
+        ///     该属性用于这个实体与其它实体集合的关联。
         /// </summary>
         /// <param name="propertyExpression">
-        ///     A lambda expression representing the property to access information and operations for
-        ///     (<c>t => t.Property1</c>).
+        ///     一个 Lambda 表示式，表示将要访问信息及操作的属性
+        ///     (<c>t => t.Property1</c>)。
         /// </param>
         /// <returns>
-        ///     An object that exposes change tracking information and operations for the
-        ///     given navigation property.
+        ///     为给定导航属性公开了改变跟踪信息和操作的对象。
+        ///     
         /// </returns>
         public virtual CollectionEntry<TEntity, TProperty> Collection<TProperty>(
             [NotNull] Expression<Func<TEntity, IEnumerable<TProperty>>> propertyExpression)
@@ -100,13 +100,13 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         }
 
         /// <summary>
-        ///     Provides access to change tracking and loading information for a reference (i.e. non-collection)
-        ///     navigation property that associates this entity to another entity.
+        ///     提供了对实体的给定引用（即非集合）导航属性的改变跟踪和加载信息的访问，
+        ///     该属性用于这个实体与其它实体的关联。
         /// </summary>
-        /// <param name="propertyName"> The name of the navigation property. </param>
+        /// <param name="propertyName"> 导航属性的名称。 </param>
         /// <returns>
-        ///     An object that exposes change tracking information and operations for the
-        ///     given navigation property.
+        ///     为给定导航属性公开了改变跟踪信息和操作的对象。
+        ///     
         /// </returns>
         public virtual ReferenceEntry<TEntity, TProperty> Reference<TProperty>([NotNull] string propertyName)
             where TProperty : class
@@ -117,13 +117,13 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         }
 
         /// <summary>
-        ///     Provides access to change tracking and loading information for a collection
-        ///     navigation property that associates this entity to a collection of another entities.
+        ///     提供了对实体给定集合导航属性的改变跟踪和加载信息的访问，
+        ///     该属性用于这个实体与其它实体集合的关联。
         /// </summary>
-        /// <param name="propertyName"> The name of the navigation property. </param>
+        /// <param name="propertyName"> 导航属性的名称。 </param>
         /// <returns>
-        ///     An object that exposes change tracking information and operations for the
-        ///     given navigation property.
+        ///     为给定导航属性公开了改变跟踪信息和操作的对象。
+        ///     
         /// </returns>
         public virtual CollectionEntry<TEntity, TProperty> Collection<TProperty>([NotNull] string propertyName)
             where TProperty : class
@@ -134,12 +134,12 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         }
 
         /// <summary>
-        ///     Provides access to change tracking information and operations for a given
-        ///     property of this entity.
+        ///     提供了对实体的给定属性的改变跟踪和操作的访问。
+        ///     
         /// </summary>
-        /// <typeparam name="TProperty"> The type of the property. </typeparam>
-        /// <param name="propertyName"> The property to access information and operations for. </param>
-        /// <returns> An object that exposes change tracking information and operations for the given property. </returns>
+        /// <typeparam name="TProperty"> 属性的类型。 </typeparam>
+        /// <param name="propertyName"> 将要访问信息及操作的属性。 </param>
+        /// <returns> 为给定属性公开了改变跟踪信息和操作的对象。 </returns>
         public virtual PropertyEntry<TEntity, TProperty> Property<TProperty>(
             [NotNull] string propertyName)
         {

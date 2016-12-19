@@ -19,11 +19,11 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
 {
     /// <summary>
     ///     <para>
-    ///         Provides access to change tracking information and operations for a given entity.
+    ///         提供了对给定实体的改变跟踪信息和操作的访问。
     ///     </para>
     ///     <para>
-    ///         Instances of this class are returned from methods when using the <see cref="ChangeTracker" /> API and it is
-    ///         not designed to be directly constructed in your application code.
+    ///         当使用 <see cref="ChangeTracker" /> API 时，这个类的实例被返回，
+    ///         它不是被设计为在你的应用程序代码中直接构造。
     ///     </para>
     /// </summary>
     [DebuggerDisplay("{InternalEntry,nq}")]
@@ -51,19 +51,19 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         }
 
         /// <summary>
-        ///     Gets the entity being tracked by this entry.
+        ///     获取当前项正在被跟踪的实体对象。
         /// </summary>
         public virtual object Entity => InternalEntry.Entity;
 
         /// <summary>
         ///     <para>
-        ///         Gets or sets that state that this entity is being tracked in.
+        ///         获取或设置正在被跟踪的实体状态。
         ///     </para>
         ///     <para>
-        ///         When setting the state, the entity will always end up in the specified state. For example, if you
-        ///         change the state to <see cref="EntityState.Deleted" /> the entity will be marked for deletion regardless
-        ///         of its current state. This is different than calling <see cref="DbSet{TEntity}.Remove(TEntity)" /> where the entity
-        ///         will be disconnected (rather than marked for deletion) if it is in the <see cref="EntityState.Added" /> state.
+        ///         当设置状态时，实体通常将以指定状态结束。For example, if you
+        ///         例如，如果你将实体状态改变为 <see cref="EntityState.Deleted" />，那么无论实体的当前状态是什么都将被标记为删除。
+        ///         这与调用 <see cref="DbSet{TEntity}.Remove(TEntity)" /> 是不同时，
+        ///         如果它处在 <see cref="EntityState.Added" /> 状态，那它将与实体断开（而不是标记为删除）。
         ///     </para>
         /// </summary>
         public virtual EntityState State
@@ -88,21 +88,21 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         InternalEntityEntry IInfrastructure<InternalEntityEntry>.Instance => InternalEntry;
 
         /// <summary>
-        ///     Gets the context that is tracking the entity.
+        ///     获取正在跟踪的实体所在的上下文。
         /// </summary>
         public virtual DbContext Context => InternalEntry.StateManager.Context;
 
         /// <summary>
-        ///     Gets the metadata about the shape of the entity, its relationships to other entities, and how it maps to the database.
+        ///     获取有关实体形状、与其它实体的关系以及如果映射到数据库的元数据。
         /// </summary>
         public virtual IEntityType Metadata => InternalEntry.EntityType;
 
         /// <summary>
-        ///     Provides access to change tracking information and operations for a given
-        ///     property or navigation property of this entity.
+        ///     提供了对实体的给定属性或导航属性的改变跟踪和操作的访问。
+        ///     
         /// </summary>
-        /// <param name="propertyName"> The property to access information and operations for. </param>
-        /// <returns> An object that exposes change tracking information and operations for the given property. </returns>
+        /// <param name="propertyName"> 将要访问信息和操作的属性。 </param>
+        /// <returns> 为给定属性公开了改变跟踪信息和操作的对象。 </returns>
         public virtual MemberEntry Member([NotNull] string propertyName)
         {
             Check.NotEmpty(propertyName, nameof(propertyName));
@@ -126,18 +126,18 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         }
 
         /// <summary>
-        ///     Provides access to change tracking information and operations for all
-        ///     properties and navigation properties of this entity.
+        ///     提供了对实体的给定属性或导航属性的改变跟踪和操作的访问。
+        ///     
         /// </summary>
         public virtual IEnumerable<MemberEntry> Members
             => Properties.Cast<MemberEntry>().Concat(Navigations);
 
         /// <summary>
-        ///     Provides access to change tracking information and operations for a given
-        ///     navigation property of this entity.
+        ///     提供了对实体的给定导航属性的改变跟踪和操作的访问。
+        ///     
         /// </summary>
-        /// <param name="propertyName"> The property to access information and operations for. </param>
-        /// <returns> An object that exposes change tracking information and operations for the given property. </returns>
+        /// <param name="propertyName"> 将要访问信息和操作的属性。 </param>
+        /// <returns> 为给定属性公开了改变跟踪信息和操作的对象。 </returns>
         public virtual NavigationEntry Navigation([NotNull] string propertyName)
         {
             Check.NotEmpty(propertyName, nameof(propertyName));
@@ -162,8 +162,8 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         }
 
         /// <summary>
-        ///     Provides access to change tracking information and operations for all
-        ///     navigation properties of this entity.
+        ///     提供了对实体的所有导航属性的改变跟踪和操作的访问。
+        ///     
         /// </summary>
         public virtual IEnumerable<NavigationEntry> Navigations
             => InternalEntry.EntityType.GetNavigations().Select(navigation => navigation.IsCollection()
@@ -171,8 +171,8 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
                 : new ReferenceEntry(InternalEntry, navigation));
 
         /// <summary>
-        ///     Provides access to change tracking information and operations for a given
-        ///     property of this entity.
+        ///     提供了对实体的给定属性的改变跟踪和操作的访问。
+        ///     
         /// </summary>
         /// <param name="propertyName"> The property to access information and operations for. </param>
         /// <returns> An object that exposes change tracking information and operations for the given property. </returns>
@@ -184,20 +184,21 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         }
 
         /// <summary>
-        ///     Provides access to change tracking information and operations for all
-        ///     properties of this entity.
+        ///     提供了对实体的所有属性的改变跟踪和操作的访问。
+        ///     
         /// </summary>
         public virtual IEnumerable<PropertyEntry> Properties
             => InternalEntry.EntityType.GetProperties().Select(property => new PropertyEntry(InternalEntry, property));
 
         /// <summary>
-        ///     Provides access to change tracking and loading information for a reference (i.e. non-collection)
-        ///     navigation property that associates this entity to another entity.
+        ///     提供了对实体的给定引用（即非集合）导航属性的改变跟踪和加载信息的访问，
+        ///     该属性用于这个实体与其它实体的关联。
+        ///     
         /// </summary>
-        /// <param name="propertyName"> The name of the navigation property. </param>
+        /// <param name="propertyName"> 导航属性的名称。 </param>
         /// <returns>
-        ///     An object that exposes change tracking information and operations for the
-        ///     given navigation property.
+        ///     为给定导航属性公开了改变跟踪信息和操作的对象。
+        ///     
         /// </returns>
         public virtual ReferenceEntry Reference([NotNull] string propertyName)
         {
@@ -207,21 +208,21 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         }
 
         /// <summary>
-        ///     Provides access to change tracking information and loading information for all
-        ///     reference (i.e. non-collection) navigation properties of this entity.
+        ///     提供了对实体所有引用（即非集合）导航属性的改变跟踪和加载信息的访问。
+        ///     
         /// </summary>
         public virtual IEnumerable<ReferenceEntry> References
             => InternalEntry.EntityType.GetNavigations().Where(n => !n.IsCollection())
                 .Select(navigation => new ReferenceEntry(InternalEntry, navigation));
 
         /// <summary>
-        ///     Provides access to change tracking and loading information for a collection
-        ///     navigation property that associates this entity to a collection of another entities.
+        ///     提供了对实体给定集合导航属性的改变跟踪和加载信息的访问，
+        ///     该属性用于这个实体与其它实体集合的关联。
         /// </summary>
-        /// <param name="propertyName"> The name of the navigation property. </param>
+        /// <param name="propertyName"> 导航属性的名称。 </param>
         /// <returns>
-        ///     An object that exposes change tracking information and operations for the
-        ///     given navigation property.
+        ///     为给定导航属性公开了改变跟踪信息和操作的对象。
+        ///     
         /// </returns>
         public virtual CollectionEntry Collection([NotNull] string propertyName)
         {
@@ -231,44 +232,45 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         }
 
         /// <summary>
-        ///     Provides access to change tracking information and loading information for all
-        ///     collection navigation properties of this entity.
+        ///     提供了对实体所有集合导航属性的改变跟踪和加载信息的访问，
+        ///     
         /// </summary>
         public virtual IEnumerable<CollectionEntry> Collections
             => InternalEntry.EntityType.GetNavigations().Where(n => n.IsCollection())
                 .Select(navigation => new CollectionEntry(InternalEntry, navigation));
 
         /// <summary>
-        ///     Gets a value indicating if the key values of this entity have been assigned a value.
-        ///     False if one or more of the key properties is assigned null or the CLR default,
-        ///     otherwise true.
+        ///     获取一个值，指示实体的键值是否已被分派值。
+        ///     如果一个或多个键属性被分派了 null 或 CLR 默认值则为假（<c>false</c>），否则为真（<c>true</c>）。
+        ///     
         /// </summary>
         public virtual bool IsKeySet => InternalEntry.IsKeySet;
 
         /// <summary>
-        ///     Gets the current property values for this entity.
+        ///     获取实体的当前属性值。
         /// </summary>
-        /// <value> The current values. </value>
+        /// <value> 当前值。 </value>
         public virtual PropertyValues CurrentValues => new CurrentPropertyValues(InternalEntry);
 
         /// <summary>
-        ///     Gets the original property values for this entity. The original values are the property
-        ///     values as they were when the entity was retrieved from the database.
+        ///     获取实体的原始属性值。
+        ///     原始值是从数据库中取回实体时得到的属性值。
+        ///     
         /// </summary>
-        /// <value> The original values. </value>
+        /// <value> 原始值。 </value>
         public virtual PropertyValues OriginalValues => new OriginalPropertyValues(InternalEntry);
 
         /// <summary>
         ///     <para>
-        ///         Queries the database for copies of the values of the tracked entity as they currently
-        ///         exist in the database. If the entity is not found in the database, then null is returned.
+        ///         为让跟踪实体的值的复本与当前数据库中已存在的一致而查询数据库。
+        ///         如果在数据库中找不到实体，那么返回 null。
         ///     </para>
         ///     <para>
-        ///         Note that changing the values in the returned dictionary will not update the values
-        ///         in the database.
+        ///         注意，在返回字典中改变的值将不会更新数据库中的值。
+        ///         
         ///     </para>
         /// </summary>
-        /// <returns> The store values, or null if the entity does not exist in the database. </returns>
+        /// <returns> 存储值或 null（在实体在数据库中不存在时）。 </returns>
         public virtual PropertyValues GetDatabaseValues()
         {
             var values = Finder.GetDatabaseValues(InternalEntry);
@@ -278,24 +280,24 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
 
         /// <summary>
         ///     <para>
-        ///         Queries the database for copies of the values of the tracked entity as they currently
-        ///         exist in the database. If the entity is not found in the database, then null is returned.
+        ///         为让跟踪实体的值的复本与当前数据库中已存在的一致而查询数据库。
+        ///         如果在数据库中找不到实体，那么返回 null。
         ///     </para>
         ///     <para>
-        ///         Note that changing the values in the returned dictionary will not update the values
-        ///         in the database.
+        ///         注意，在返回字典中改变的值将不会更新数据库中的值。
+        ///         
         ///     </para>
         ///     <para>
-        ///         Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
-        ///         that any asynchronous operations have completed before calling another method on this context.
+        ///         在相同上下文实例上的多个激活操作是不被支持的。  Use 'await' to ensure
+        ///         使用 'await' 来确保调用这个上下文上的其它方法前任何异步操作都已完成。
         ///     </para>
         /// </summary>
         /// <param name="cancellationToken">
-        ///     A <see cref="CancellationToken" /> to observe while waiting for the task to complete.
+        ///     观察等待任务完成的 <see cref="CancellationToken" />。
         /// </param>
         /// <returns>
-        ///     A task that represents the asynchronous operation. The task result contains the store values,
-        ///     or null if the entity does not exist in the database.
+        ///     表示异步操作的任务。任务结果包含了存储值或 null（当实体不存在于数据库时）。
+        ///     
         /// </returns>
         public virtual async Task<PropertyValues> GetDatabaseValuesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -306,35 +308,35 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
 
         /// <summary>
         ///     <para>
-        ///         Reloads the entity from the database overwriting any property values with values from the database.
+        ///         从数据库重新加载实体，使用数据库中的值覆盖任何的属性值。
         ///     </para>
         ///     <para>
-        ///         The entity will be in the <see cref="EntityState.Unchanged" /> state after calling this method,
-        ///         unless the entity does not exist in the database, in which case the entity will be
-        ///         <see cref="EntityState.Detached" />. Finally, calling Reload on an <see cref="EntityState.Added" />
-        ///         entity that does not exist in the database is a no-op. Note, however, that an Added entity may
-        ///         not yet have had its permanent key value created.
+        ///         调用了这个方法后实体将处于 <see cref="EntityState.Unchanged" /> 状态，
+        ///         除非该实体在数据库中不存在，
+        ///         在这种情况下实体将处于 <see cref="EntityState.Detached" /> 状态。
+        ///         最后，在 <see cref="EntityState.Added" /> 状态的实体（在数据库中不存在）上调用 Reload 将执行空操作。
+        ///         注意，添加的实体可能还尚未创建其持久键的值。
         ///     </para>
         /// </summary>
         public virtual void Reload() => Reload(GetDatabaseValues());
 
         /// <summary>
         ///     <para>
-        ///         Reloads the entity from the database overwriting any property values with values from the database.
+        ///         从数据库重新加载实体，使用数据库中的值覆盖任何的属性值。
         ///     </para>
         ///     <para>
-        ///         The entity will be in the <see cref="EntityState.Unchanged" /> state after calling this method,
-        ///         unless the entity does not exist in the database, in which case the entity will be
-        ///         <see cref="EntityState.Detached" />. Finally, calling Reload on an <see cref="EntityState.Added" />
-        ///         entity that does not exist in the database is a no-op. Note, however, that an Added entity may
-        ///         not yet have had its permanent key value created.
+        ///         调用了这个方法后实体将处于 <see cref="EntityState.Unchanged" /> 状态，
+        ///         除非该实体在数据库中不存在，
+        ///         在这种情况下实体将处于 <see cref="EntityState.Detached" /> 状态。
+        ///         最后，在 <see cref="EntityState.Added" /> 状态的实体（在数据库中不存在）上调用 Reload 将执行空操作。
+        ///         注意，添加的实体可能还尚未创建其持久键的值。
         ///     </para>
         /// </summary>
         /// <param name="cancellationToken">
-        ///     A <see cref="CancellationToken" /> to observe while waiting for the task to complete.
+        ///     观察等待任务完成的 <see cref="CancellationToken" />。
         /// </param>
         /// <returns>
-        ///     A task that represents the asynchronous operation.
+        ///     表示异步操作的任务。
         /// </returns>
         public virtual async Task ReloadAsync(CancellationToken cancellationToken = default(CancellationToken))
             => Reload(await GetDatabaseValuesAsync(cancellationToken));
