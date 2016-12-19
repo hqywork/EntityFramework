@@ -288,7 +288,7 @@ namespace Microsoft.EntityFrameworkCore.ChangeTracking
         ///         
         ///     </para>
         ///     <para>
-        ///         在相同上下文实例上的多个激活操作是不被支持的。  Use 'await' to ensure
+        ///         在相同上下文实例上的多个激活操作是不被支持的。
         ///         使用 'await' 来确保调用这个上下文上的其它方法前任何异步操作都已完成。
         ///     </para>
         /// </summary>

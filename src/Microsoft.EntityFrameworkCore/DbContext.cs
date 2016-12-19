@@ -255,12 +255,12 @@ namespace Microsoft.EntityFrameworkCore
         ///     
         /// </param>
         /// <remarks>
-        ///     This method will automatically call <see cref="ChangeTracking.ChangeTracker.DetectChanges" /> to discover any
-        ///     changes to entity instances before saving to the underlying database. This can be disabled via
-        ///     <see cref="ChangeTracking.ChangeTracker.AutoDetectChangesEnabled" />.
+        ///     这个方法将自动调用 <see cref="ChangeTracking.ChangeTracker.DetectChanges" /> 来发现保存到底层数据库之前的所有对实体实例的变更。
+        ///     这可以通过 <see cref="ChangeTracking.ChangeTracker.AutoDetectChangesEnabled" /> 来禁用。
+        ///     
         /// </remarks>
         /// <returns>
-        ///     The number of state entries written to the database.
+        ///     被写入到数据库的状态条目的个数。
         /// </returns>
         [DebuggerStepThrough]
         public virtual int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -292,49 +292,48 @@ namespace Microsoft.EntityFrameworkCore
         }
 
         /// <summary>
-        ///     Asynchronously saves all changes made in this context to the database.
+        ///     异步保存当前上下文中所有的更改到数据库。
         /// </summary>
         /// <remarks>
         ///     <para>
-        ///         This method will automatically call <see cref="ChangeTracking.ChangeTracker.DetectChanges" /> to discover any
-        ///         changes to entity instances before saving to the underlying database. This can be disabled via
-        ///         <see cref="ChangeTracking.ChangeTracker.AutoDetectChangesEnabled" />.
+        ///         这个方法将自动调用 <see cref="ChangeTracking.ChangeTracker.DetectChanges" /> 来发现保存到底层数据库之前的所有对实体实例的变更。
+        ///         这可以通过 <see cref="ChangeTracking.ChangeTracker.AutoDetectChangesEnabled" /> 来禁用。
+        ///         
         ///     </para>
         ///     <para>
-        ///         Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
-        ///         that any asynchronous operations have completed before calling another method on this context.
+        ///         在相同上下文实例上的多个激活操作是不被支持的。
+        ///         使用 'await' 来确保调用这个上下文上的其它方法前任何异步操作都已完成。
         ///     </para>
         /// </remarks>
-        /// <param name="cancellationToken">A <see cref="CancellationToken" /> to observe while waiting for the task to complete.</param>
+        /// <param name="cancellationToken">A <see cref="CancellationToken" /> 观察等待任务完成的 <see cref="CancellationToken" />。 </param>
         /// <returns>
-        ///     A task that represents the asynchronous save operation. The task result contains the
-        ///     number of state entries written to the database.
+        ///     一个任务，表示异步保存操作。
+        ///     任务结果包含被写入到数据库的状态条目的个数。
         /// </returns>
         public virtual Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
             => SaveChangesAsync(acceptAllChangesOnSuccess: true, cancellationToken: cancellationToken);
 
         /// <summary>
-        ///     Asynchronously saves all changes made in this context to the database.
+        ///     异步保存当前上下文中所有的更改到数据库。
         /// </summary>
         /// <param name="acceptAllChangesOnSuccess">
-        ///     Indicates whether <see cref="ChangeTracking.ChangeTracker.AcceptAllChanges" /> is called after the changes have
-        ///     been sent successfully to the database.
+        ///     指示在更改已经被成功发送到数据库后是否调用 <see cref="ChangeTracking.ChangeTracker.AcceptAllChanges" />。
         /// </param>
         /// <remarks>
         ///     <para>
-        ///         This method will automatically call <see cref="ChangeTracking.ChangeTracker.DetectChanges" /> to discover any
-        ///         changes to entity instances before saving to the underlying database. This can be disabled via
-        ///         <see cref="ChangeTracking.ChangeTracker.AutoDetectChangesEnabled" />.
+        ///         这个方法将自动调用 <see cref="ChangeTracking.ChangeTracker.DetectChanges" /> 来发现保存到底层数据库之前的所有对实体实例的变更。
+        ///         这可以通过 <see cref="ChangeTracking.ChangeTracker.AutoDetectChangesEnabled" /> 来禁用。
+        ///         
         ///     </para>
         ///     <para>
-        ///         Multiple active operations on the same context instance are not supported.  Use 'await' to ensure
-        ///         that any asynchronous operations have completed before calling another method on this context.
+        ///         在相同上下文实例上的多个激活操作是不被支持的。
+        ///         使用 'await' 来确保调用这个上下文上的其它方法前任何异步操作都已完成。
         ///     </para>
         /// </remarks>
-        /// <param name="cancellationToken">A <see cref="CancellationToken" /> to observe while waiting for the task to complete.</param>
+        /// <param name="cancellationToken">A <see cref="CancellationToken" /> 观察等待任务完成的 <see cref="CancellationToken" />。 </param>
         /// <returns>
-        ///     A task that represents the asynchronous save operation. The task result contains the
-        ///     number of state entries written to the database.
+        ///     一个任务，表示异步保存操作。
+        ///     任务结果包含被写入到数据库的状态条目的个数。
         /// </returns>
         public virtual async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
             CancellationToken cancellationToken = default(CancellationToken))
