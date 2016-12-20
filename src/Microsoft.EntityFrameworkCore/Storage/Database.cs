@@ -15,11 +15,11 @@ namespace Microsoft.EntityFrameworkCore.Storage
 {
     /// <summary>
     ///     <para>
-    ///         The main interaction point between a context and the database provider.
+    ///         上下文与数据库提供者之间的主要交互点。
     ///     </para>
     ///     <para>
-    ///         This type is typically used by database providers (and other extensions). It is generally
-    ///         not used in application code.
+    ///         此类型通常被数据库提供者（及其它扩展）使用。
+    ///         一般不在应用程序代码中使用。
     ///     </para>
     /// </summary>
     public abstract class Database : IDatabase

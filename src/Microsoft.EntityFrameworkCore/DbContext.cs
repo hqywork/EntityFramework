@@ -330,7 +330,7 @@ namespace Microsoft.EntityFrameworkCore
         ///         使用 'await' 来确保调用这个上下文上的其它方法前任何异步操作都已完成。
         ///     </para>
         /// </remarks>
-        /// <param name="cancellationToken">A <see cref="CancellationToken" /> 观察等待任务完成的 <see cref="CancellationToken" />。 </param>
+        /// <param name="cancellationToken"> 观察等待任务完成的 <see cref="CancellationToken" />。 </param>
         /// <returns>
         ///     一个任务，表示异步保存操作。
         ///     任务结果包含被写入到数据库的状态条目的个数。
